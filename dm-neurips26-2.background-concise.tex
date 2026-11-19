@@ -1,0 +1,166 @@
+\section{Background, challenges and assumptions}
+\label{sec:problem}
+
+\subsection{Manifolds and geometric preliminaries}
+For basic definitions readers should consult \cite{do1992riemannian,lee2003introduction,lee2018introduction}. Here we consider sub-manifolds $M\subset \rrr^D$ which we will generically call {\em manifolds}. Note that the ambient dimension $D$ will not appear throughout the paper, only Euclidean distances $|x-y|$ with $x,y\in \rrr^D$ will appear, hence $D$ can actually be infinite, and $\rrr^D$ could become a Hilbert space.
+
+We also assume that $M$ is a closed manifold with smoothness of class $\mathcal{C}^k$, as described in \cref{as:smooth}. This assumption ensures the existence of a local polynomial expansion up to order $k$ in the neighborhood of each point on $M$. Such expansions satisfy specific regularity constraints, enabling precise characterization of the local geometry and supporting rigorous analytical derivations. These properties are fundamental for establishing the theoretical results and ensuring consistency in subsequent computations.
+
+In this work, we focus on several key geometric quantities, including the tangent space, reach, Riemannian metric, and geodesic curves. These quantities play critical roles in understanding the geometry of the manifold and in estimating and reconstructing manifolds. While these concepts are broadly defined in the general framework in Riemannian geometry, considering that our sampling points lie in submanifolds of $\R^D$, we restrict our attention to their specialized formulations for submanifolds embedded in Euclidean space. This setting simplifies their definitions and aligns with the analytical and computational techniques employed in this study. For example, the tangent space is characterized as the hyperplane tangent to $M$ at a given point, and the Riemannian metric is induced from the ambient Euclidean metric. 
+
+For definition of \textbf{Tangent Space}, \textbf{Riemannian Metric}, \textbf{Normal Coordinate} and \textbf{Laplace-Beltrami Operator}, please refer to \cite{lee2018introduction}. We will talk about other geometric quantities in the following.
+
+Riemannian metric defines a measure on $M$, called the {\em Riemannian measure} via the {\em volume form}. If $M$ is compact, it has a finite volume $\text{Vol}(M)$. We can now have other measures on $M$, which are absolutely continuous w.r.t. the Riemannian measure, through their densities $f:M\rightarrow (0,\infty)$.   In statistics/manifold learning, it is assumed that we are given an i.i.d. sample $X_n=\{x_1,\ldots x_n\}\subset M$ from $f$. 
+
+
+\begin{definition}[Reach\cite{federer1959curvature}]
+	\upshape
+	The reach of a subset $A$ of $\R^n$ is the largest $\tau$ (possibly $\infty$) such that if $x \in\R^n$ and the  distance from $x$ to $A$ is smaller than $\tau$, then $A$ contains a unique point nearest to $x$. For more detail and properties, refer to \cite{aamari2019estimating}.
+\end{definition}
+The reach of a subset $A \subset \R^n$  provides a measure of its local geometric regularity. Specifically, if the reach of  $A$ is $\tau>0$, then every point within a distance less than $\tau$ from $A$ has a unique nearest point on $A$. Geometrically, this implies that $A$ does not exhibit sharp corners, cusps, or regions of high curvature within the specified radius. In particular: For convex subsets of $\R^n$, the reach is infinite, reflecting the absence of curvature bounds or sharp features. For smooth submanifolds, the reach is inversely related to its maximum principal curvature. Intuitively, the reach corresponds to the radius of the smallest osculating ball that fits locally around.
+
+
+
+
+\subsection{The Diffusion map}
+\label{embed}
+Let $M$ be a smooth, closed manifold of class $\mathcal{C}^3$ embedded in the (possibly high-dimensional) Euclidean space $\rrr^D$ and $\Delta_{\mathcal{M}}$ be Laplacian operator on $M$ with eigenvalues $0=\lambda_0 \leq \lambda_1 \leq \cdots$. We consider eigenfunctions corresponding to these eigenvalues: $e_0,e_1,\cdots$, and we normalize them such that $\|e_i\|_{L^2}=1$. It is easy to check $e_0 \equiv \mathrm{const}$. Then we have the following embedding theorem.
+
+
+\begin{theorem}\cite[Thm. 5.1]{portegies2016embeddings}
+	\label{embeddingthm}
+Let $\MM$ be the set of $d$ dimensional, closed Riemannian manifolds whose Ricci curvature is bounded from below by $\kappa$, injectivity radius is bounded from below by $\iota$, and the volume is bounded from above by $V$, we define $\varphi: M\subset \mathbb{R}^D \rightarrow \varphi(M) \subset \mathbb{R}^m$ as the following:
+\begin{equation}
+	\varphi(x)=(2t)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4}(e^{-\lambda_1 t}e_1(x),e^{-\lambda_2 t}e_2(x),\cdots,e^{-\lambda_m t}e_m(x)) \in \mathbb{R}^m,
+\end{equation}
+then there exists a $t_0=t_0(d,\kappa,\iota,\epsilon)$ such that for all $0<t<t_0$, there exists a $N_0(d,\kappa,\iota,\epsilon,V,t)$ such that if $m>N_0$, then for all $M\in \mathcal{M}(d,\kappa,\iota,V)$, the map above is an embedding of $M$ into $\mathbb{R}^m$, and $1-\epsilon < \|d \varphi_p v\| < 1+\epsilon$ where $\|v\|=1$.
+\end{theorem}
+
+
+\begin{lemma}\cite[Lem. 3.2]{portegies2016embeddings}
+	\label{kernelerror}
+We use the same notation as in the preceding theorem. Then for $\epsilon^\prime>0$, there exists $N_1=N_1(d,\kappa,\iota,V,\epsilon^\prime,t_0)$ such that when $m\geq N_1$ and $t_0 \leq t^\prime\leq 4$, we have 
+\begin{align}
+	\left|K_m(t^\prime,p,\cdot)-K(t^\prime,p,\cdot)\right| \leq \epsilon^\prime,
+\end{align}
+where $K(t,p,q)$ is the heat kernel:
+$K(t,p,q)=\sum_{i=0}^{\infty} e^{-\lambda_i t} e_i(p) e_i(q)$,
+and $K_m(t,p,q)$ is the truncated heat kernel:
+$K_m(t,p,q)=\sum_{i=0}^{m} e^{-\lambda_i t} e_i(p) e_i(q)$. 
+\end{lemma}
+
+We select $t=t_0/2$, $t^\prime = t_0$ (if $t_0>4$, we set $t=2$ and $t^\prime=4$) and $m=\max\left\{N_0,N_1\right\}+1$ to make the results above both hold.
+
+
+In addition, $\varphi:M\rightarrow \varphi(M)$ is a homeomorphism, so $\dim M=\dim \varphi(M)$, and $\varphi$ is an embedding, also an immersion, thus $\varphi$ is a local diffeomorphism, and $\varphi$ is bijective, so $\varphi$ is a diffeomorphism. Thus $\varphi(M)$ is a smooth manifold \cite{lee2003introduction}.
+
+\iffalse
+
+\mmp{
+\begin{enumerate}
+	\item We have $n$ samples $\left\{x_{1:n}\right\} \overset{i.i.d.}{\sim} M$, where $M$ is a d-dimensional manifold, and $x_i \in \mathbb{R}^D$.
+	\item Using Embedding Algorithm (DM), we have $\left\{y_{1:n}\right\}=\hat{\varphi}(x_{1:n}) \in \mathbb{R}^m$ where $m\geq d$.
+	\item We estimate Tangent Space $\Tilde{T_i}$, and want to estimate $\Vert Err(\Tilde{T_i}) \Vert$.
+\end{enumerate}
+shall we be consistent about $x\in M, \,y\in\varphi(M)$?
+}%end mmp 
+\fi
+
+Given a finite sample $\mathcal{X}_n=\left\{x_1,\dots,x_n\right\}$ the DM algorithm constructs a similarity matrix to measure the pairwise relationships between data points, where the commonly used kernel is the Gaussian kernel, defined as $k(x_i, x_j) = \exp(-\|x_i - x_j\|^2 / h)$, where $h$ is a scale parameter, and this similarity matrix is then normalized, we denote it as Laplacian graph which is the approximation of Laplace-Beltrami operator. By performing eigenvalue decomposition on normalized Laplacian graph, the algorithm extracts the dominant eigenvalues and eigenvectors. These eigenvectors, scaled by their corresponding eigenvalues, define the diffusion coordinates, providing a low-dimensional embedding of the data. This embedding preserves the global geometry of the dataset while emphasizing its intrinsic structure.
+
+
+
+In this paper, we will focus mainly on the geometric properties of the DM $\varphi(M)$, w.r.t. the original manifold $M$. The results we obtain will be useful in characterizing the output of the DM algorithm in finite sample settings.
+\iffalse
+and we apply them specifically to the
+estimation of the tangent subspace $\left\{T_{\varphi(x_i)}\varphi(x_i)\right\}_{i=1}^n$.
+\fi
+
+\cite{berard1994embedding} have shown that, in the limit of large $m$ and small $t$, $\varphi(M)$ is isometric with $M$, and that this is possible approximatively with a finite $m$ for manifolds with bounded diameter and Ricci curvature bounded from below. In spite of these seemingly encouraging results, the DM can exhibit severe curvature distortions even for apparently ``nice'' manifolds. The intuitive explanation is the fact that, even if $M$ is compact and smooth to order $k$, the local interactions between the manifold curvature and the manifold reach (note that these are not independent quantities) can exert a strong influence on the Laplacian eigenfunctions. 
+
+\subsection{Assumptions}
+
+Thus, in predicting smoothness (w.r.t. Sobolev norms) and geometric properties of $\varphi(M)$, one needs to consider $\tau_M, \iota_M, \kappa_M$ in addition to the smoothness of $M$ (made more precise below). We will give the assumptions for the set of manifolds we will perform DM, and then discuss basic properties of $M$ based on these assumptions. We will see all these assumptions intuitively ensure our manifolds have very good shape, which can help us avoid extremely bizarre situations. And we will use them to derive existence of the geometric bound after DM, which are critical in estimating the convergence rate.
+
+
+\begin{assumption}[Reach]
+	\label{as:reach}
+  The reach $\tau_M$ of $M$ is bounded below by $\tau_{\min}$. This assumption is used in \cref{thm:reach-bound}.
+\end{assumption}
+
+\begin{assumption}[Volume]
+	\label{ass:V}
+  The volume of $M$ is bounded below by $V_1$ and bounded above by $V_2$. This assumption is used in \cref{embeddingthm}, \cref{lem:lambdam-bound}.
+\end{assumption}
+
+\begin{assumption}[Smoothness]
+	\label{as:smooth}
+For $k$ and $\textbf{L}:=\left(L_\perp,L_3,\dots,L_k\right)$, we assume there exists a local one-to-one parameterization $\Psi_p$ for all $p \in M$:
+	\begin{align}
+		\Psi_p :B_{T_pM}(0,r) \rightarrow M \quad \text{by} \quad \Psi_p(v)=p+v+N_p(v)
+	\end{align}
+	for some $r\geq \frac{1}{4L_\perp}$ with $N_p(v) \in \mathcal{C}^k(B_{T_pM}(0,r),\mathbb{R}^D)$ such that 
+	\begin{align}
+		N_p(0)=p,\  d_0N_p=0,\ \|d_v^2N_p\| \leq L_\perp, \ \|d_v^iN_p\|\leq L_i\ \text{for }i=3,\dots,k
+	\end{align}
+	holds for all $\|v\|\leq \frac{1}{4L_\perp}$. This assumption is used in \cref{lem:remainder-bound}
+\end{assumption}
+
+
+In addition, we make the following more technical regularity
+assumption that will be used in \cref{lem:covar-deri-bound}, \cref{sec:glo-reach}.
+
+
+\begin{assumption}[Christoffel Symbols]
+	\label{as:Christoffel}
+	In the normal coordinate chart, the derivatives of the Christoffel symbols of order at most $k-2$ (including Christoffel symbol itself) have a uniform upper bound depending only on its order, i.e.
+	\begin{align}
+		|\frac{\partial^l \Gamma_{ij}^k}{\partial x_{i_1}\cdots\partial x_{i_l}}| \leq C(l) \quad \text{for } 1\leq i,j,k\leq d\ \text{ and }\  l\leq k-2
+	\end{align}
+\end{assumption}
+
+\begin{assumption}[Heat Kernel Bound]
+    \label{as:heatkernel}
+    The heat kernel coefficients $\Phi_j(p,q)$ and $C(v)$ are uniformly bounded with respect to $d(p,q) \in (s_0, s_1)$. \cref{eq:heatkernelcoef}.
+\end{assumption}
+
+
+Let $\mathcal{M}(d,\tau_{\min},V,k,\textbf{L},\Gamma)$ be the set of compact connected submanifolds $M \subset \mathbb{R}^D$, with dimension $d$ satisfying \cref{as:reach}--\cref{as:heatkernel}. For simplicity, in the rest of our paper we always assume that the manifold is $d$-dimensional and the ambient dimension is $D$, we also use the abbreviation $\mathcal{M}$ for $\mathcal{M}(d,\tau_{\min},V,k,\textbf{L},\Gamma)$, and sometimes we include some of the parameters above to indicate that the assumptions corresponding to these parameters are satisfied.
+
+
+We also assume that the sampling density on $M$ does not deviate too much from uniform.
+\begin{assumption}[Density]
+\label{ass:density}
+  Let $\mathcal{P}_{f_{\min},f_{\max}}$ denote the set of distributions $P$ with support on $M \in \mathcal{M}$, and the density function $f$ of $P$ with respect to Hausdorff measure such that $0<f_{\min}\leq f \leq f_{\max}<\infty$. This assumption will be used in \cref{sec:density}.
+\end{assumption}
+
+All the assumptions above, perhaps with the exception of \cref{as:smooth}, \cref{as:Christoffel}, and \cref{as:heatkernel} are generically present in the manifold learning literature.
+
+
+\subsection{Direct Consequences of Assumptions}
+Here we list some direct results for $M \in \MM$ from assumptions which will also be used in our following proof.
+
+\begin{corollary}[Complete Manifold]\cite{do1992riemannian}
+	Any compact Riemannian manifold is geodesically complete according to the Hopf-Rinow theorem.
+\end{corollary}
+
+\begin{corollary}[Curvature]
+	\label[corollary]{as:kappa}
+	The sectional curvature of $M$ is bounded by $\kappa$, since $|K(u,v)|\leq 2/\tau_M^2 \leq 2 / \tau_{\min}^2$ due to the Gauss equation. In addition, it immediately implies Ricci curvature of $M$ is bounded below by $-\kappa(d-1)$ since $\operatorname{Ric}(v,v)=\sum_{i=2}^{d}K(v,x_i)$ where $\left\{v, x_2,\dots,x_d\right\}$ are orthonormal basis. It is used in \cref{embeddingthm}, \cref{lem:lambdam-bound}.	
+\end{corollary}
+
+\begin{corollary}[The injectivity radius]\cite[Prop. A.1]{aamari2019estimating}
+	\label[corollary]{injradius}
+	The injectivity radius $\iota_M$ of $M$ is bounded below by $ \pi \tau_M$, which implies $\iota_M$ is bounded by $\pi \tau_{\min}$ for all $M \in \MM$. We use it to make sure DM is an embedding.
+\end{corollary}
+The injectivity radius bounded from below implies we can find a normal coordinate chart with the uniform radius.
+
+\begin{corollary}[Diameter]\cite[Lem. 2]{aamari2018stability}
+	For $M \in \mathcal{M}$, we have
+	\begin{align}
+		\operatorname{diam}(M)\leq \frac{C_d}{\tau_M^{d-1}f_{\min}}\leq \frac{C_d}{\tau_{\min}^{d-1}f_{\min}}
+	\end{align}
+	where $C_d$ is a constant only depending on $d$. Thus the diameter of $M \in \mathcal{M}$ has a uniform upper bound. We will use it in \cref{lem:lambdam-bound}.
+\end{corollary}
+
+

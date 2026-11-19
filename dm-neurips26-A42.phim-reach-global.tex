@@ -1,0 +1,294 @@
+\subsubsection{Global Reach}
+\label{sec:glo-reach}
+In this subsection, we estimate the lower bound of the global reach of $\varphi(\MM)$. The global reach constrains the overall shape of the manifold by controlling the Euclidean distance to ''separate'' different parts of the manifold.
+
+
+The proof is organized by considering three different cases depending on different ranges of the geodesic distance $d(p,q)$. When $d(p,q)$ is small, a local linear approximation excludes the global case directly (\cref{lem:global_case}); when $d(p,q)$ is large, heat-kernel estimates give a positive lower bound on $|\varphi(p)-\varphi(q)|$ (\cref{global condition}); the remaining is closed either by the condition $(*)$ or by a refined heat-kernel analysis if $(*)$ fails.
+
+Under Assumptions \ref{as:reach}, when $p$ is close to $q$, the geodesic
+distance $d(p,q)$ can be controlled by the Euclidean distance $|p-q|$. 
+
+\begin{lemma}\cite[Prop. 1]{li2019geodesic}
+	\label[lemma]{lem:geodis_eucdis}
+	If $d(p,q)=s$, then
+	\begin{align}
+		s-\frac{s^3}{24 r_0^2}\leq |p-q| \leq s,
+	\end{align}
+	where $\frac{1}{r_0}=\sup
+	\left\{|\gamma^{\prime\prime}(s)|\right\}$ and $\gamma$ varies among
+	all geodesics on $M$ in arc length parameter.
+\end{lemma}
+
+We consider the left inequality of \cref{lem:geodis_eucdis}, it is easy to see if $s\leq 2\sqrt{2}r_0$, then
+\begin{align}
+	\frac{2}{3}s\leq s-\frac{s^3}{24r_0^2} \leq |p-q|,
+\end{align}
+which implies 
+\begin{align}
+	|p-q|\leq d(p,q) \leq \frac{3}{2}|p-q|.
+\end{align}
+
+We can verify easily that $1/r_0=\sup
+\left\{|\gamma^{\prime\prime}(s)|\right\}=1/\tau_{l}$, and this local linear approximation can exclude the global reach case when $d(p,q)< 2\sqrt{2}\tau_{l}$, and $\frac{3}{2}$ plays an important role here, it will lead to the contradiction to the global reach case.
+
+\begin{lemma}
+	\label[lemma]{lem:global_case}
+	If $d(p,q)\leq s_0$ where $s_0=2\sqrt{2}\tau_{l}$, then $p,q$ cannot satisfy global reach case.
+\end{lemma}
+
+\begin{proof}[Proof of \cref{lem:global_case}]
+	\label{proof:global_case}
+	If not, we assume there exists $p,q \in M$ such that $d(p,q)\leq s_0$ and $p,q$ satisfy global reach case, i.e. 
+	\begin{align}
+		
+&\frac{p+q}{2} \in Med(M), \\
+ \pi(\frac{p+q}{2})=p,q &\quad \text{and} \quad d_E(p,M)=d_E(q,M)=|p-q|/2 \label{proj_med}
+	\end{align}
+Since $d(p,q)\leq s_0$, we have $d(p,q)\leq \frac{3}{2}|p,q|$. 
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=2]
+			
+			% 画圆
+			\draw[dashed] (0,0) circle(1cm);
+			
+			% 画直径
+			\draw[dashed] (-0.6,-0.8) -- (0.6,0.8);
+			
+			% 画穿过直径与圆交点的曲线
+			\draw plot[smooth, tension=0.7] coordinates {(-3,-1.5) (-1,-1.2) (-0.6,-0.8) (-0.6,0.2) (0.6,0.8) (1,1) (3,1.5)};
+			\node at (-0.6,-0.8) [left] {$p$};
+			\node at (0.6,0.8) [above] {$q$};
+			\node at (0,0) [below right] {$\frac{p+q}{2}$};
+			\node at (-0.15,0.5) [above left] {$\gamma(a)=\pi(\frac{p+q}{2})$};
+			\filldraw[red] (-0.6,-0.8) circle (1pt);
+			\filldraw[red] (0.6,0.8) circle (1pt);
+			\filldraw[red] (0,0) circle (1pt);
+			\filldraw[red] (-0.21,0.47) circle (1pt);
+			\draw[dashed] (0, 0) -- (-0.21,0.47);
+		\end{tikzpicture}
+		\caption{Local Estimate}
+	\end{figure}
+	
+	The inequality above implies the geodesic $\gamma(s)$ connecting $p$ and
+	$q$ must be partly inside the ball
+	$B(\frac{p+q}{2},\frac{|p-q|
+	}{2})$, since $\overline{pq}$ is the diameter of this ball and
+	\begin{align}
+		|\gamma(s)|=d(p,q) \leq \frac{3}{2} |p-q| < \frac{\pi}{2}|p-q|,
+	\end{align}
+	which implies there exist $a \in (0,s)$ such that
+	\begin{align}
+		|\gamma(a)-\frac{p+q}{2}| < \frac{|p-q|}{2},
+	\end{align}
+	which contradicts with $\varphi(p),\varphi(q)$ satisfy global reach case \cref{proj_med}.
+\end{proof}
+
+
+Since $\varphi$ is almost isometry, i.e. $| \|d\varphi\|-1| < \epsilon$, thus $d(p,q)\leq s/(1+\epsilon)$ implies $d(\varphi(p),\varphi(q)) \leq s$. Since we have proved that the local reach of $\varphi(M)$ admits a uniform lower bound $\tau_{l,\varphi(\MM)}$ depending only on the geometric parameters of $\MM$, then we choose $s_0 = 2\sqrt{2}\tau_{l,\varphi(\MM)}$, then $\varphi(p), \varphi(q)$ cannot satisfy global reach case for any $\varphi(M) \in \varphi(\MM)$ Consequently, only when $d(p,q)>\frac{s_0}{1+\epsilon}$, $\varphi(p),\varphi(q)$ can satisfy global reach case. 
+
+
+And in the following, we will claim that if the geodesic distance of two points $p,q \in M$ is large enough, then the Euclidean distance of $\varphi(p), \varphi(q) \in \varphi(M)$ is bounded from below, i.e. 
+\begin{lemma}
+	\label[lemma]{global condition}
+	For large enough $s_1>0$, there exists $r_1>0$ such that
+	\begin{align}
+		d(p,q)> s_1 \implies |\varphi(p)-\varphi(q)|>r_1.
+	\end{align}
+	We call this the {\em global reach condition}.
+\end{lemma}
+
+
+
+
+To bound the Euclidean distance from below, we need to bound the heat kernel $K(t,p,q)$ from above and $K(t,p,p)$ from below to control this Euclidean distance. For upper bound, we have
+\begin{lemma}
+	\label{thm:upperbound}
+	Let M be a complete Riemannian manifold of dimension $d$ with Ricci curvature is greater than $-\kappa(d-1)$ for some $\kappa\geq 0$, then heat kernel satisfies:
+	\begin{align}
+		K(t,p,q)\leq \frac{C_1(d)}{t^{d/2}}\exp\left(C_2(d)\kappa t - \frac{2d(p,q)^2}{9t}\right)
+	\end{align}.
+\end{lemma}
+
+This lemma follows from \cref{thm:upper_app} of Li-Yau and \cref{injvol} of Croke with $\alpha_1=\frac{3}{2}$, $\alpha_2=\frac{1}{2}$ and $t_0\leq \iota^2/4$, and \cref{thm:upper_app}, \cref{injvol} are in the appendix.
+
+
+For lower bound, we only need on-diagonal lower estimate:
+\begin{lemma}\cite[Thm. 3.1]{wang1997sharp}
+	\label{thm:lowerbound}
+	Let M be a complete Riemannian manifold of dimension $d$ with Ricci curvature is greater than $-\kappa(d-1)$ for some $\kappa\geq 0$. For any $t>0$ and $p\in M$, we have
+	\begin{align}
+		K(t,p,p) \geq (4\pi t)^{-d/2} \exp\left(-\frac{\beta^2}{4}t-\frac{2\sqrt{3d}\beta}{3}\sqrt{t}\right).
+	\end{align}
+	where $\beta=\sqrt{\kappa}(d-1)$.
+\end{lemma}
+This follows \cref{thm:lower_app} of Wang with $\sigma^2=\frac{3\beta^2}{8d}$ and $p=q$.
+
+
+
+\begin{proof}[Proof of \cref{global condition}]
+	To show this, we will compute the distance between $\varphi(p)$ and $\varphi(q)$ in $\mathbb{R}^m$ directly and then estimate it using geodesic distance of $p,q$.
+	
+	For any $p \in M$, $\varphi(p)=(t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4}\left(e^{-\lambda_1 t_0/2}e_1(p),\cdots,e^{-\lambda_m t_0/2}e_m(p)\right) \in \mathbb{R}^m$, thus the Euclidean distance between $\varphi(p)$ and $\varphi(q)$ is
+	\begin{align}
+		|\varphi(p)-\varphi(q)|&=(t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4} \sqrt{\sum_{i=1}^me^{-\lambda_i t_0}(e_i(p)-e_i(q))^2}\\
+		&=(t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4}\sqrt{\sum_{i=1}^me^{-\lambda_i t_0}(e_i(p)^2+e_i(q)^2-2e_i(p)e_i(q))} \\
+		&=(t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4}\sqrt{\sum_{i=0}^m(e^{-\lambda_i t_0}e_i(p)^2+e^{-\lambda_i t_0}e_i(q)^2-2e^{-\lambda_i t_0}e_i(p)e_i(q))},
+	\end{align}
+	the last equality holds since $e_0$ is a constant function.
+	
+	
+	We have the representation of heat kernel
+	\begin{align}
+		K(t,p,q)=\sum_{i=0}^{\infty} e^{-\lambda_i t} e_i(p) e_i(q),
+	\end{align}
+	and the truncated heat kernel $K_m$ is
+	\begin{align}
+		K_m(t,p,q)=\sum_{i=0}^{m} e^{-\lambda_i t} e_i(p) e_i(q),
+	\end{align}
+	and we have $\|K_m(t_0,p,\cdot)-K(t_0,p,\cdot)\|_{\infty} \leq \epsilon^\prime$,
+	thus 
+	\begin{align}
+		|\varphi(p)-\varphi(q)|&\geq (t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4} \sqrt{K_m(t_0,p,p)+K_m(t_0,q,q)-2K_m(t_0,p,q)}\\
+		&\geq (t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4} \sqrt{K(t_0,p,p)+K(t_0,q,q)-2 K(t_0,p,q)-4\epsilon^\prime}.
+	\end{align}
+	
+	Combining two inequities in \cref{thm:upperbound} and \cref{thm:lowerbound}, we have
+	\begin{align}
+		|\varphi(p)&-\varphi(q)|\geq (t_0)^\frac{d+2}{4}2(4\pi)^\frac{d}{4}  \nonumber \\ \times &\sqrt{(4\pi t_0)^{-\frac{d}{2}} \exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right) - \frac{C_1(d)}{t_0^{d/2}}\exp\left(C_2(d)\kappa t_0 - \frac{2d(p,q)^2}{9t_0}\right) - 2\epsilon^\prime}. \label{sqrt_dis}
+	\end{align}
+	In our case, $t_0, m$ are fixed when embedding $M$ into $\mathbb{R}^m$. The first two items in the square root
+	are only depends on the geometric properties of $\MM$, and $\epsilon^\prime$ is chosen when we perform DM, we can choose appropriate $\epsilon^{\prime}$ based on our geometric setting such that 
+	\begin{align}
+		2\epsilon^{\prime}<(4\pi t_0)^{-\frac{d}{2}} \exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right)
+	\end{align}
+	
+	Therefore, for large enough $s_1$ with $d(p,q)\geq s_1$, we have $|\varphi(p)-\varphi(q)|\geq r_1$, where $r_1, s_1$ depend on our
+	setting of $\MM$.
+\end{proof}
+
+The proof above only claimed the existence of $s_1$ and $r_1$. For the uniformity claim we now make them explicit, choosing $\epsilon^\prime$, $s_1$ and $r_1$ so that they depend only on the geometric parameters of $\MM$, we consider the item under square root in \cref{sqrt_dis} which is positive, that is
+\begin{align}
+	&(4\pi t_0)^{-\frac{d}{2}} \exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right) - \frac{C_1(d)}{t_0^{d/2}}\exp\left(C_2(d)\kappa t_0 - \frac{2s_1^2}{9t_0}\right) - 2\epsilon^\prime > 0 \\
+	\iff&  \exp\left(C_2(d)\kappa t_0 - \frac{2s_1^2}{9t_0}\right)< \frac{(4\pi)^{-\frac{d}{2}}}{C_1(d)} \exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right) - \frac{2(t_0)^\frac{d}{2}\epsilon^\prime}{C_1(d)}.
+\end{align}
+
+We denote the right side $\frac{(4\pi)^{-\frac{d}{2}}}{C_1(d)} \exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right) - \frac{2(t_0)^\frac{d}{2}\epsilon^\prime}{C_1(d)}$ as $F$, we need it be a fixed constant, thus we can select 
+\begin{align}
+	\label{sele eprime}
+	\epsilon^\prime=\frac{(4\pi t_0)^{-\frac{d}{2}}}{8}\exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right),
+\end{align}
+which implies
+\begin{align}
+	F= \frac{3(4\pi)^{-\frac{d}{2}}}{4C_1(d)} \exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right),
+\end{align}
+Therefore, $\epsilon^\prime$ is only depending on the geometric properties of $\MM$. Choosing $\epsilon^\prime$ will affect $m=\max\left\{N_0(d,\kappa,\iota,\epsilon,V,\frac{t_0}{2}),N_1(d,\kappa,\iota,V,\epsilon^\prime,t_0)\right\}+1$ and is independent with choice of $t_0=t_0(d,\kappa,\iota,\epsilon)$ when perform DM. We need set appropriate $\epsilon^\prime$ based on geometric setting and derive $m$ and $t_0$ at the beginning, but until now we know how to choose them.
+
+Then we ask $\exp\left(C_2(d)\kappa t_0 - \frac{2s_1^2}{9t_0}\right) < \frac{2}{3}F$, which is equivalent to
+\begin{align}
+	s_1^2>\frac{9t_0}{2}\left(C_2(d)\kappa t_0 + \frac{\beta^2 t_0}{4}+\frac{2\sqrt{3d t_0}\beta}{3}+ \log\left(2(4\pi)^\frac{d}{2}C_1(d)\right)\right), \label{smallests1}
+\end{align}
+Intuitively, $t_0$ is small, so $s_1$ is not very large.
+
+When $s_1$ is the square root of \cref{smallests1} and  $\epsilon^\prime=\frac{(4\pi t_0)^{-\frac{d}{2}}}{8}\exp\left(-\frac{\beta^2t_0}{4}-\frac{2\sqrt{3dt_0}\beta}{3}\right)$, we have 
+\begin{align}
+	r=r_1=\sqrt{t_0} \exp\left(-\frac{\beta^2t_0}{8}-\frac{\sqrt{3dt_0}\beta}{3}\right)
+\end{align}
+
+We now split $d(p,q)$ into three cases according to the range, which together cover all pairs $p,q\in M$:
+\begin{enumerate}
+	\item [(i)] $d(p,q)\leq s_0/(1+\epsilon)$. Since $|\|d\varphi\|-1|<\epsilon$, we have $d(\varphi(p),\varphi(q))\leq s_0$, then by \cref{lem:global_case}, $\varphi(p), \varphi(q)$ cannot be the global reach case.
+	\item [(ii)] $d(p,q)>s_1$. It implies $|\varphi(p)-\varphi(q)|> r_1$ by \cref{global condition}, we have the reach is bounded from the below.
+	\item [(iii)] $s_0/(1+\epsilon) < d(p,q) < s_1$. If there is no gap between $s_0/1+\epsilon$ and $s_1$, that is
+	\begin{align}
+		s_0^2>\frac{9(1+\epsilon)^2t_0}{2}\left(C_2(d)\kappa t_0 + \frac{\beta^2 t_0}{4}+\frac{2\sqrt{3d t_0}\beta}{3}+\log\left(2(4\pi)^\frac{d}{2}C_1(d)\right)\right).
+	\end{align}
+	Combining $s_0=2\sqrt{2}r_0$ and $r_0 =\tau_{l,\varphi(\MM)}$. The condition making $s_0/1+\epsilon \geq s_1$ is 
+	\begin{align}
+		\label{star}
+		8\tau^2_{l,\varphi(\MM)} &\geq 8/\left(d^2(t_0)^\frac{d+2}{2}2(4\pi)^\frac{d}{2} C_2^2\sum_{k=1}^{m}e^{-\lambda_k t_0} (1+\lambda_k)^{2+\frac{d}{2}} \right) \nonumber \\
+		&\geq \frac{9(1+\epsilon)^2t_0}{2}\left(C_2(d)\kappa t_0 + \frac{\beta^2 t_0}{4}+\frac{2\sqrt{3d t_0}\beta}{3}+ \log\left(2(4\pi)^\frac{d}{2}C_1(d)\right)\right), \tag{*}
+	\end{align}
+	which is an assumption only based on geometric properties since $t_0=t_0(d,\kappa,\iota,\epsilon)$, $m=\max\left\{N_0,N_1\right\}+1$ and so on. If $(*)$ fails, there is an uncovered interval $(s_0/(1+\epsilon),\,s_1)$, we need to verify $d(p,q)$ in it. To do this, we need a tighter lower bound on $s_0$, and a short time expansion of the heat kernel that controls $K(t,p,p)-K(t,p,q)$ in this interval.
+\end{enumerate}
+
+
+Now we consider (iii) when there is a gap. First we estimate $\tau_{l,\varphi(M)}$ in more details. From now, we ignore some constants and merge them as $C$ to make our computation clearly. We have $\| II\|_{op} \leq C(t_0)^{\frac{d+2}{4}} \sqrt{\sum_{k=1}^{m}e^{-\lambda_k t_0} (1+\lambda_k)^{2+\frac{d}{2}}}$, combining the estimate for eigenvalues
+\begin{align}
+C_1^{1+\text{diam}\sqrt{\kappa}} \text{diam}^{-2} k^{2/d} \leq \lambda_k \leq C+C^\prime k^{2/d},
+\end{align}
+we can derive
+\begin{align}
+\|II\|_{op} \leq C (t_0)^{\frac{d+2}{4}}\sqrt{\sum_{k=1}^{m}e^{-k^{2/d} t_0} k^{1+\frac{4}{d}}} < C (t_0)^{\frac{d+2}{4}}\sqrt{\sum_{k=1}^{\infty}e^{-k^{2/d} t_0} k^{1+\frac{4}{d}}}.
+\end{align} 
+Now we estimate $\sum_{k=1}^{\infty}e^{-k^{2/d} t_0} k^{1+\frac{4}{d}}$ by integral. We have 
+\begin{align}
+	\sum_{k=1}^{\infty}e^{-k^{2/d} t_0} k^{1+\frac{4}{d}} \leq  \int_{0}^{\infty} e^{-x^{2/d} t_0} x^{1+\frac{4}{d}}dx + C
+\end{align}
+let $u = x^{2/d} t_0$, then $x^{1+\frac{4}{d}} = (\frac{u}{t_0})^{2+\frac{d}{2}}$ and $dx = \frac{u^{\frac{d}{2}-1}d}{2 t_0^{d/2}} du$, then 
+\begin{align}
+	\int_{0}^{\infty} e^{-x^{2/d} t_0} x^{1+\frac{4}{d}}dx = \frac{d}{2t_0^{2+d}}\int_{0}^{\infty} e^{-u} u^{d+1} du = \frac{d}{2t_0^{2+d}}\Gamma(d+2)
+\end{align}
+
+Therefore, $\|II\|_{op}^2 \leq Ct_0^{\frac{d+2}{2}}/t_0^{d+2} = Ct_0^{-(1+\frac{d}{2})}$, and $s_0^2 = 8 \tau_{l,\varphi(M)} \geq C t_0^{1+\frac{d}{2}}$.
+
+Now we try to estimate the diffusion distance carefully using the asymptotic expression, which is due to Varadhan:
+\begin{align}
+	\lim_{t \to 0} -4t \log K(t,p,q) = d(p,q)^2
+\end{align}
+and thus
+\begin{align}
+	\lim_{t \to 0} -4t \log \frac{K(t,p,q)}{K(t,p,p)} = d(p,q)^2
+\end{align}
+which implies $K(t,p,q) \approx K(t,p,p) e^{-\frac{d(p,q)^2}{4t}}$ for small enough $t$. Then 
+\begin{align}
+	K(t,p,p) - K(t,p,q) \approx (1 - e^{-\frac{d(p,q)^2}{4t}}) K(t,p,p).
+\end{align}
+
+To make it more acurate, we have 
+\begin{align}
+	\label{eq:heatkernelcoef}
+	\left|K(t,p,q)- \frac{e^{-d(p,q)^2/4t}}{(4\pi t)^{d/2}}\sum_{j=0}^{v} t^j \frac{\Phi_j(p,q)}{j !}\right| \leq C(v) t^{v+1} \frac{e^{-d(p,q)^2/4t}}{(4\pi t)^{d/2}}
+\end{align}
+holds for any $v \in \N$, all $(x,y)$ not in the cut locus and $t$ is less than one specified $T$, and $\Phi_j(p,q)$ are the heat kernel coefficients \cite{ludewig2019strong}.
+
+Then we have
+\begin{align}
+	\frac{K(t,p,q)}{K(t,p,p)} \leq \frac{\frac{e^{-d(p,q)^2/4t}}{(4\pi t)^{d/2}} (\sum_{j=0}^{v} t^j \frac{\Phi_j(p,q)}{j !} + C(v) t^{v+1})}{\frac{1}{(4\pi t)^{d/2}} (\sum_{j=0}^{v} t^j \frac{\Phi_j(p,p)}{j !} - C(v) t^{v+1})}
+\end{align}
+thus
+\begin{align}
+	K(t,p,p) - K(t,p,q) \geq \left(1- \frac{ \sum_{j=0}^{v} t^j \frac{\Phi_j(p,q)}{j !} + C(v) t^{v+1}}{\sum_{j=0}^{v} t^j \frac{\Phi_j(p,p)}{j !} - C(v) t^{v+1}}e^{-d(p,q)^2/4t}\right) K(t,p,p).
+\end{align}
+
+We assume that we can find $t$ and $v$ such that $\frac{ \sum_{j=0}^{v} t^j \frac{\Phi_j(p,q)}{j !} + C(v) t^{v+1}}{\sum_{j=0}^{v} t^j \frac{\Phi_j(p,p)}{j !} - C(v) t^{v+1}} \leq e^{d(p,q)^2/8t}$ when $d(p,q)^2 \in (s_0^2,s_1^2)$. We also have
+\begin{align}
+	K(t,p,p) \geq (4\pi t)^{-d/2} \exp\left(-\frac{\beta^2}{4}t-\frac{2\sqrt{3d}\beta}{3}\sqrt{t}\right).
+\end{align}
+thus 
+\begin{align}
+	K(t,p,p) - K(t,p,q) \geq \frac{1 - e^{-\frac{d(p,q)^2}{8t}}}{(4\pi t)^{d/2}} \exp\left(-\frac{\beta^2}{4}t-\frac{2\sqrt{3d}\beta}{3}\sqrt{t}\right).
+\end{align}
+when $t$ is small, $\exp\left(-\frac{\beta^2}{4}t-\frac{2\sqrt{3d}\beta}{3}\sqrt{t}\right)$ is obviously bounded from below, we denote the lower bound as $C_l$. The remaining part increases monotonically with $d(p,q)^2$ in $(s_0^2, s_1^2)$, so 
+\begin{align}
+	K(t,p,p)- K(t,p,q) \geq \frac{1 - e^{-\frac{C}{8} t^{d/2}}}{(4\pi t)^{d/2}} C_l
+\end{align}
+which is converge to a positive constant as $t \to 0$. This implies $K(t,p,p) - K(t,p,q)$ has a positive lower bound with an appropriate $t$, also $|\varphi(p) - \varphi(q)|$ has the lower bound. So when $d(p,q)^2 \geq s_0^2 = Ct^{1+\frac{d}{2}} $, we can always find the lower bound of $|\varphi(p)- \varphi(q)|$. Hence the global reach are bounded from below if we choose appropriate $t$.
+
+
+
+\iffalse
+
+When $\epsilon\rightarrow 0$, $\epsilon^\prime \rightarrow 0 $, the inequality is
+\begin{align}
+	s_0^2>\frac{9t_0}{2}\left(C_2(d)\kappa t_0 + \frac{\beta^2 t_0}{4}+\frac{2\sqrt{3d t_0}\beta}{3}+ \frac{d}{2}\log(4\pi)+\log C_1(d)\right).
+\end{align}
+
+This inequality is the necessary condition, which describes the requirement in the case with no error. If this inequality holds, we can select small enough $\epsilon$ and $\epsilon^\prime$ when perform DM, the global reach condition holds.
+
+\fi
+
+
+Therefore, the local reach and global reach both have the uniform lower bound, thus $\tau_{\varphi(M)}\geq \tau_{\varphi(\MM)}>0$ for some fixed constant.

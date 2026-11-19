@@ -1,0 +1,78 @@
+\subsubsection{Local Reach}
+
+Local reach is a quantity measuring the "curvature" locally, controlling of local reach will avoid some extremely weird manifold. Now we estimate the lower bound of local reach for $\varphi(\mathcal{M})$. 
+
+To control the local reach, we will derive the local coordinate representation of $\varphi(M)$ and then use the boundedness of derivative of eigenfunctions to obtain the upper bound of the second fundamental form of $\varphi(M)$ in $\mathbb{R}^m$.
+
+\begin{lemma}[Uniform lower bound on the local reach]
+	\label[lemma]{lem:local-reach}
+	The local reach of $\varphi(M)$ admits the uniform lower bound: there exists a constant $\tau_{l,\varphi(\MM)}>0$, depending only on the uniform geometric parameters of $\MM$ and on $(m,t_0)$, such that
+	\begin{align}
+		\tau_{l,\varphi(M)} \geq \tau_{l,\varphi(\MM)} >0, \quad \text{for all $\varphi(M) \in \varphi(\MM)$.}
+	\end{align}
+\end{lemma}
+
+\begin{proof}[Proof of \cref{lem:local-reach}]
+For any $p \in M$, we can choose neighborhoods $U\subset M$ and $V \subset \varphi(M)$ s.t. $\varphi(U)=V$, and $(U,\mathbf{x})$ is a normal coordinate chart of $p$, where $\mathbf{x}^{-1}=\exp_p \circ E$, $E$ is the isomorphism from $\mathbb{R}^d$ to $T_pM$, and we denote $\mathbf{x}(U)$ as $\hat{U} \subset \mathbb{R}^d$ is open. 
+
+We have a parametrization of $U\subset M$: 
+\begin{align}
+	\mathbf{x}^{-1}: \hat{U}\subset \mathbb{R}^d &\rightarrow U \subset M \\
+	(x_1,\dots,x_d) &\rightarrow \mathbf{x}^{-1}(x_1,\dots,x_d)= (\mathbf{x}^{-1}_1(x_1,\dots,x_d),\dots,\mathbf{x}^{-1}_D(x_1,\dots,x_d))
+\end{align}
+
+
+Using this map, we have a coordinate representation of $\varphi$, i.e.  $\hat{\varphi}:=\varphi \circ \mathbf{x}^{-1}$ of $V \subset \varphi(M)$ by $\hat{U}\overset{\mathbf{x}^{-1}}{\rightarrow}U \overset{\varphi}{\rightarrow} V \subset \mathbb{R}^m$:
+\begin{align}
+(x_1,\dots,x_d) &\overset{\mathbf{x}^{-1}}{\rightarrow} \mathbf{x}^{-1}(x_1,\dots,x_d) \overset{\varphi}{\rightarrow} (\varphi_1\circ \mathbf{x}^{-1},\dots,\varphi_m\circ \mathbf{x}^{-1})(x_1,\dots,x_d)
+\end{align}
+
+Let $r=\hat{\varphi}$ be the parameterization of $\varphi(M)$, we compute its $k$-th tangent vector
+\begin{align}
+	r_i=\frac{\partial \hat{\varphi}}{\partial x_i}=\left(\frac{\partial \hat{\varphi}_1}{\partial x_i},\dots,\frac{\partial \hat{\varphi}_m}{\partial x_i}\right)\quad  i=1,\dots,d,
+\end{align}
+and $r$'s second derivative is 
+\begin{align}
+	r_{ij}=\left(\frac{\partial^2 \hat{\varphi}_1}{\partial x_i \partial x_j},\dots,\frac{\partial^2 \hat{\varphi}_m}{\partial x_i \partial x_j}\right)\quad  i,j=1,\dots,d .
+\end{align}
+
+For $\varphi(p) \in \varphi(M)$, we have the orthogonal decomposition:
+\begin{align}
+	\R^m=T_{\varphi(p)}\varphi(M) \oplus N_{\varphi(p)}\varphi(M),
+\end{align}
+where $T_{\varphi(p)}\varphi(M)$ is spanned by $\left\{r_1,\dots,r_d\right\}$ and $ N_{\varphi(p)}\varphi(M)$ is the $m-d$ subspace orthogonal to $T_{\varphi(p)}\varphi(M)$. Let $\pi$ be the orthogonal projection from $\R^m$ onto $N_{\varphi(p)}\varphi(M)$, we can derive the second fundamental form on $\varphi(M)$, which is a symmetric 2-tensor field given by 
+\begin{align}
+	\mathrm{II}_{ij} dx^i \otimes dx^j \quad 
+	\text{with} \quad \mathrm{II}_{ij} = \pi(r_{ij}) \in  N_{\varphi(p)}\varphi(M).
+\end{align}
+
+Then we can verify that 
+\begin{align}
+	\|\mathrm{II}\|_{op} \leq d \max \left\{\pi(r_{ij})\right\}\leq d \max\left\{|r_{ij}|\right\}.
+\end{align} 
+
+We compute the module of $r_{ij}=\left(\frac{\partial^2 \hat{\varphi}_1}{\partial x_i \partial x_j},\dots,\frac{\partial^2 \hat{\varphi}_m}{\partial x_i \partial x_j}\right)$ in more detail. We have $\hat{\varphi}_i = (t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4} e^{-\lambda_i t_0/2} \hat{e}_i$, thus
+
+\begin{align}
+	\left|\frac{\partial^2 \hat{\varphi}_k}{\partial x_i \partial x_j}\right|=(t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4} e^{-\lambda_k t_0/2} \left|\frac{\partial^2 \hat{e}_k}{\partial x_i \partial x_j}\right| \\
+	\leq (t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4} e^{-\lambda_k t_0/2} C_2 (1+\lambda_k)^{1+\frac{d}{4}},
+\end{align}
+where the inequality is from \cref{deriinequ} in \cref{sec:phim-higher-deri}.
+
+We also have the lower bound of $\lambda_k$, 
+\begin{align}
+\lambda_k \geq C_1^{1+\text{diam}\sqrt{\kappa}} \text{diam}^{-2} k^{2/d},
+\end{align}
+where $C_1$ is constant only depending on $d$ \cite[Thm. 1.2.1]{hassannezhad2016eigenvalue}.
+
+Therefore, 
+\begin{align}
+|r_{ij}|\leq (t_0)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4} C_2\sqrt{\sum_{k=1}^{m}e^{-\lambda_k t_0} (1+\lambda_k)^{2+\frac{d}{2}}}.
+\end{align}
+
+It is easy to see that $e^{-x t_0} (1+x)^{4+d}$ is increasing when $x<\frac{4+d}{2t_0}-1$ and decreasing when $x>\frac{4+d}{2t_0}-1$, thus we can use 
+\begin{align}
+C_1^{1+\text{diam}\sqrt{\kappa}} \text{diam}^{-2} k^{2/d} \leq \lambda_k \leq C+C^\prime k^{2/d},
+\end{align}
+which implies $c_1 k^{2/d} \leq \lambda_k \leq c_2 k^{2/d}$, where $c_1,c_2$ are constants depending on $\kappa$, $\text{diam}$, $V$, $d$. Then we have $|r_{ij}|$ is bounded from above, thus $\|\mathrm{II}\|_{op}$ is bounded from above, which implies that $\tau_{l,\varphi(M)}$ is bounded from below.
+\end{proof}

@@ -1,0 +1,52 @@
+
+\subsection{Bounds on the pushforward density}
+\label{sec:density}
+
+In this subsection, we estimate the pushforward density of the sampling process. By establishing both lower and upper bounds for the pushforward density, we ensure that the sampling over $\varphi(M)$ remains approximately uniform. This guarantees that there are always some sampling points in any nonzero measure region with nonzero probability, thereby allowing the manifold to be effectively approximated using the sampled points.
+
+\begin{lemma}[Almost-uniform pushforward density]
+	\label{lem:density-bound}
+	Suppose $\epsilon \leq \frac{1-4^{-1/d}}{3}$. Then for every $M \in \MM$ the Jacobian factor of $\varphi$ satisfies
+	\begin{align}
+		\sqrt{\det \left(\pi_{T_p M} \circ d\varphi_p^T \circ d\varphi_p |_{T_pM}\right)} \in \left(\tfrac{1}{2},2\right),
+	\end{align}
+	and consequently the pushforward density $g$ of $\varphi_\# P$ obeys $\tfrac{f_{\min}}{2} < g < 2 f_{\max}$. 
+\end{lemma}
+
+\begin{proof}[Proof of \cref{lem:density-bound}]
+We denote $d\varphi_p:T_p M \rightarrow T_{p^\prime} N$ as $A$, then for $\|v\|=1$, $1-\epsilon<\|Av\|<1+\epsilon$, which means $\|A\|<1+\epsilon$, so $\sqrt{\lambda_{\max}(A^T A)}<1+\epsilon$. We know $A^T A$ is positive-definite  symmetric matrix, we consider an unit eigenvector $v$ of it with eigenvalue $\lambda$, then 
+\begin{align}
+	\lambda=\|v^T \lambda v\|= \|v^T A^T A v\|=\|Av\|^2\in ((1-\epsilon)^2,(1+\epsilon)^2).
+\end{align}
+
+Since $A^TA$ is symmetric, then $A^T A=Q\Lambda Q^T$,  where $Q$ is orthogonal matrix and $\Lambda$ is diagonal matrix whose diagonal elements are eigenvalues of $A^T A$ and all of them are close to $1$.
+\begin{align}
+	|\|\pi_{T_p M} A^T A v\|-\|v\||&\leq \|\pi_{T_p M}(A^T A -I) v\|\\
+	&=\|\pi_{T_p M} Q(\Lambda-I)Q^T v\|\\
+	&\leq \|Q(\Lambda-I)Q^T v\|\\
+	&\leq 3\epsilon,
+\end{align}
+the last inequality is due to orthogonal matrix does not change norm of vector and diagonal elements in $\Lambda-I$ are smaller than $3\epsilon$.
+
+Thus we have $1-3\epsilon <\|\pi_{T_p M} A^T A v\|<1+3\epsilon $, so the eigenvalues of $\pi_{T_p M} A^T A|_T$ is greater than $1-3\epsilon$ and less than $1+3\epsilon$. Therefore, if 
+\begin{align}
+	\label{range_of_e}
+	\epsilon \leq \min\left\{\frac{4^{1/d}-1}{3},\frac{1-\frac{1}{4^{1/d}}}{3}\right\} = \frac{1-\frac{1}{4^{1/d}}}{3},
+\end{align}
+then
+\begin{align}
+	\det (\pi_{T_p M} A^T A|_T)=\prod \lambda_i\in ((1-3\epsilon)^d,(1+3\epsilon)^d)\subset(\frac{1}{4},4),
+\end{align}
+which implies
+\begin{align}
+	\sqrt{\det \left(\pi_{T_p M} \circ d\varphi_p^T \circ d\varphi_p |_{T_pM}\right)} \in (\frac{1}{2},2).
+\end{align}
+
+According to \cref{thm:push_density}, we have the pushforward density of $\varphi_\# P$ is 
+	\begin{align}
+	g(p^\prime)=f(p)/\sqrt{\det \left(\pi_{T_p M} \circ d\varphi_p^T \circ d\varphi_p |_{T_pM}\right)},
+\end{align}
+where $p^\prime = \varphi(p)$. Therefore, $\frac{f_{min}}{2}<g<2f_{\max}$.
+\end{proof}
+
+In our setting, our sampleing is uniform, thus $f \equiv \frac{1}{Vol(M)}$, which is bounded from both and above, which implies the density of $\varphi(\MM)$ is also bounded from below by $\min\limits_{M \in \MM} \left\{Vol(M)\right\}/2$ and bounded above by $2\max\limits_{M \in \MM} \left\{Vol(M)\right\}$.

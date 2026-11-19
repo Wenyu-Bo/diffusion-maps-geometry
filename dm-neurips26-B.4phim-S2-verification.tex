@@ -1,0 +1,181 @@
+\subsection{Example of \texorpdfstring{$S^2$}{S2}}
+\label{sec:S2}
+In this section, we consider the special case of $S^2$ with radius $1$ to verify the \cref{star}.
+
+For $S^2$, the intrinsic dimension $d=2$, the injectivity radius is $\pi$, the sectional curvature and the Ricci curvature are both $1$, thus negative bound $\kappa=0$, $\beta=\sqrt{\kappa}(d-1)=0$ . 
+
+The eigenvalues of $S^2$ is $l(l+1)$, with multiplicity $2l+1$, and the complex-valued eigenfunctions are 
+\begin{align}
+	Y_l^m(\theta,\phi)=N_l^m P_l^m(\cos \theta) e^{im\phi}\quad l\in \N, m=0,\pm1,\dots,\pm l,
+\end{align} 
+where $N_l^m$ is the normalization factor, $P_l^m$ is the associated Legendre polynomials, then the real valued eigenfunctions are
+\begin{align}
+Y_{lm} &= \begin{cases} 
+	\sqrt{2}(-1)^m\Re(Y_l^{m}) & \text{if } m>0, \\
+	Y_l^0 & \text{if } m = 0, \\
+	\sqrt{2}(-1)^m\Im(Y_l^{-m}) & \text{if } m<0.
+\end{cases} \\
+&=\begin{cases} 
+	(-1)^m \sqrt{2}\sqrt{\frac{2l+1}{2\pi} \frac{(l-m)!}{(l+m)!}}P_l^m(\cos \theta)\cos(m\phi) & \text{if } m>0, \\
+	\sqrt{\frac{2l+1}{4\pi}} P_l^m(\cos \theta) & \text{if } m = 0, \\
+		(-1)^m \sqrt{2}\sqrt{\frac{2l+1}{2\pi} \frac{(l-|m|)!}{(l+|m|)!}}P_l^{|m|}(\cos \theta)\sin(|m|\phi) & \text{if } m<0.
+\end{cases}
+\end{align}
+
+
+We first consider embedding $S^2$ into $L^2(S^2)$ as the following:
+\begin{align}
+	f : p \rightarrow (4t) \sqrt{2\pi} K(t,p, \cdot).
+\end{align}
+Its operator norm is
+\begin{align}
+\|df_p\|^2= \sup_{\|v\|=1} 32\pi t^2 \int_{S^2} |\nabla_v K(t,p,q)|^2 dq.
+\end{align}
+
+We need find $t_0$ such that for any $0<t<t_0$, 
+\begin{align}
+	(1-\epsilon)^2<\sup_{\|v\|=1} 32\pi t^2 \int_{S^2} |\nabla_v K(t,p,q)|^2 dq < (1+\epsilon)^2.
+\end{align}
+
+The coordinate represent of $S^2$ is 
+\begin{align}
+	r(\theta, \phi) = (\sin \theta \cos \phi, \sin \theta \sin \phi, \cos \theta),\quad  \theta \in (0,\pi), \phi \in (0,2\pi),
+\end{align}
+and thus we can select unnormalized coordinate basis as the following
+\begin{align}
+	\frac{\partial}{\partial \theta} &= (\cos \theta \cos \phi, \cos \theta \sin \phi, -\sin \theta), \\
+	\frac{\partial}{\partial \phi}  &= (-\sin\theta \sin \phi, \sin \theta\cos \phi,0).
+\end{align}
+Therefore, $g_{\theta \theta}=1 , g_{\theta \phi}=0, g_{\phi \phi}=\sin^2 \theta$. We normalize basis and then we have the gradient of $f$
+\begin{align}
+	\nabla f = \frac{\partial f}{\partial \theta} e_\theta + \frac{\partial f}{\partial \phi} \frac{1}{\sin \theta} e_\phi,
+\end{align}
+where $e_\theta = \frac{\partial}{\partial \theta}$, $e_\phi = \frac{1}{\sin \theta}\frac{\partial}{\partial \phi}$.
+
+Then for $v= v^1 e_\theta + v^2 e_\phi$, we have
+\begin{align}
+	\nabla_v f = v(f)= df(v)=\left\langle \nabla f, v\right\rangle = \frac{\partial f}{\partial \theta} v^1 + \frac{\partial f}{\partial \phi} \frac{v^2}{\sin \theta}.
+\end{align}
+
+Now we compute $\int_{S^2} |\nabla_v K(t,p,q)|^2 dq$, without loss of generality, we can assume $v=\frac{\sqrt{2}}{2}e_\theta+\frac{\sqrt{2}}{2}e_\phi$ and $p=(\pi/2,0)$ ($\pi/2$ can simplify Riemannian metric.) due to symmetry of $S^2$.
+
+We first prove $\int_{S^2} \frac{\partial K}{\partial \theta} \frac{\partial K}{\partial \phi} dq =0$. We know 
+\begin{align}
+	K(t,p,q) = \sum_{l=0}^\infty \sum_{m=-l}^{l} e^{-l(l+1) t} Y_{l}^m(p),\bar{Y}_{l}^m(q) \\
+	=\sum_{l=0}^{\infty} \frac{2l+1}{4\pi}e^{-l(l+1) t} P_l(\cos d),
+\end{align}
+where the equality comes from spherical harmonic addition theorem, $d$ is the geodesic distance between $p$ and $q$ and $\cos d = \cos \theta_p \cos \theta_q + \sin \theta_p \sin \theta_q \cos(\phi_p -\phi_q)$.
+
+Thus
+\begin{align}
+	\frac{\partial K}{\partial \theta}& = \sum_{l=0}^\infty c_l P_l^\prime(\cos d) \left(-\sin \theta_p \cos \theta_q + \cos \theta_p \sin \theta_q \cos (\phi_p -\phi_q) \right), \\
+	\frac{\partial K}{\partial \phi}& = \sum_{l=0}^\infty c_l P_l^\prime(\cos d) \left(-\sin \theta_p \sin \theta_q \sin (\phi_p -\phi_q) \right).
+\end{align}
+At $p = (\pi/2 ,0 )$, they are
+\begin{align}
+\frac{\partial K}{\partial \theta} &= \sum_{l=0}^\infty c_l P_l^\prime(\sin \theta_q \cos \phi_q) \left( -\cos \theta_q \right), \\
+\frac{\partial K}{\partial \phi} &= \sum_{l=0}^\infty c_l P_l^\prime(\sin \theta_q \cos \phi_q) \left( \sin \theta_q \sin \phi_q \right).
+\end{align}
+
+We only need to check 
+\begin{align}
+	\int_{S^2} P^\prime_{l}(\sin \theta_q \cos \phi_q) P^\prime_{l^\prime}(\sin \theta_q \cos \phi_q)  \cos \theta_q \sin \theta_q \sin \phi_q dq= 0.
+\end{align}
+
+We notice that $P_l$ is the Legendre polynomial, so $P_l^\prime$ is a polynomial. All terms are looks like $(\sin \theta_q \cos \phi_q)^k$.
+
+It is easy to verify
+\begin{align}
+&\int_{S^2} (\sin \theta_q \cos \phi_q)^k  \cos \theta_q \sin \theta_q \sin \phi_q dq\\
+=&\int_{0}^{2 \pi} \int_0^\pi \sin^{k+2}(\theta_q) \cos \theta_q \cos^k (\phi_q) \sin \phi_q d\phi d\theta  \\
+=& \int_{0}^{2 \pi}\cos^k (\phi_q) \sin \phi_q d\phi \int_0^\pi \sin^{k+2}(\theta_q) \cos \theta_q d\theta_q =0.
+\end{align}
+Therefore, add them up and we get the result we need. And immediately, we have
+\begin{align}
+\int_{S^2} |\nabla_v K(t,p,q)|^2 dq &= \int_{S^2} \left|\frac{\sqrt{2}}{2} \frac{\partial K }{\partial \theta}+ \frac{\sqrt{2}}{2} \frac{\partial K }{\partial \phi}\right|^2 dq\\
+&= \frac{1}{2} \int_{S^2} \left(\frac{\partial K }{\partial \theta}\right)^2 + \left(\frac{\partial K }{\partial \phi}\right)^2 + 2\frac{\partial K }{\partial \theta}\frac{\partial K }{\partial \phi} dq\\
+&=\frac{1}{2}\int_{S^2} \left\langle \nabla K, \nabla K\right\rangle dq
+\end{align}
+
+
+
+Then by Green Identity,
+\begin{align}
+\int_{S^2} \left\langle \nabla K, \nabla K\right\rangle dq = -\int_{S^2} K(t,p,q) \Delta K(t,p,q) dq,
+\end{align}
+and $K(t,p,q)$ is the heat kernel, thus
+\begin{align}
+	\Delta_p K(t,p,q) &= \frac{\partial}{\partial t} K(t,p,q)\\
+	&=-\frac{1}{4\pi}\sum_{l=0}^{\infty} l(l+1)(2l+1)e^{-l(l+1) t} P_l(\cos d).
+\end{align}
+Therefore, 
+\begin{align}
+&-\int_{S^2} K(t,p,q) \Delta K(t,p,q) dq \\
+=&\frac{1}{(4\pi)^2} \sum_{l,l^\prime=0}^\infty l(l+1)(2l+1)(2l^\prime+1)e^{-\left(l(l+1)+ l^\prime(l^\prime+1)\right) t} \int_{S^2} P_l(\cos d) P_{l^\prime}(\cos d) dq.
+\end{align}
+To compute the last integral, we can always assume $p$ is the north pole by symmetry, so the geodesic distance between $p$ and $q$ is naturally the polar angle of $q$, that is
+\begin{align}
+&\int_0^{2\pi} \int_0^\pi P_l(\cos \theta) P_{l^\prime}(\cos \theta) \sin \theta d\theta d\phi \\
+=&2\pi \int_{-1}^1 P_l(x) P_{l^\prime}(x) dx = \frac{4\pi}{ 2l+1} \delta_l^{l^\prime}.
+\end{align}
+hence
+\begin{align}
+\int_{S^2} \left\langle \nabla K, \nabla K\right\rangle dq &= \int_{S^2} K(t,p,q) \Delta K(t,p,q) dq \\
+&= \frac{1}{4\pi} \sum_{l=0}^\infty l(l+1)(2l+1)e^{-2l(l+1)t}.
+\end{align}
+
+Therefore,
+\begin{align}
+	32\pi t^2 \int_{S^2} |\nabla_v K(t,p,q)|^2 dq = 4t^2\sum_{l=0}^\infty l(l+1)(2l+1)e^{-2l(l+1)t}.
+\end{align}
+
+%Using Mathematica, if we set $\epsilon = 0.1$, $t$ could be $0.49$.
+
+By the isometry from $L^2(M)$ to $l^2$
+\begin{align}
+	U(f)_j=\int_M f(q) e_j(q) dq,
+\end{align}
+we have 
+\begin{align}
+	32\pi t^2 \sum_{i=1}^{\infty} e^{-2\lambda_i t} (\nabla e_i (v))^2  \in \left((1-\epsilon)^2,(1+\epsilon)^2\right),
+\end{align}
+
+We can truncate it at $N_0$ such that 
+\begin{align}
+	32\pi t^2 \sum_{i=N_0}^{\infty} e^{-2\lambda_i t} (\nabla e_i (v))^2 <\epsilon^2.
+\end{align}
+
+
+We consider the first $8$ eigenfunctions: $\frac{1}{2}\sqrt{\frac{3}{\pi}}\cos \theta, \frac{1}{2}\sqrt{\frac{3}{\pi}}\sin \theta \cos \phi, \frac{1}{2}\sqrt{\frac{3}{\pi}}\sin \theta \sin \phi$ $\dots$, we can obtain easily that the embedding norm, that is
+\begin{align}
+32\pi t^2 \sum_{i=1}^{8} e^{-2\lambda_i t} (\nabla e_i (v))^2  = 4t^2\sum_{l=1}^2 l(l+1)(2l+1)e^{-2l(l+1)t}.
+\end{align}
+
+We set $\epsilon = 0.05$ and $t=0.25$, then this embedding norm $\|df\| \in (0.95,1.05)$.
+
+In addition, to control the error between the truncated heat kernel and the heat kernel, we need
+\begin{align}
+	\|K_{N_1}(t,p,q) - K(t,p,q)\| = |\sum_{i=N_1}^{\infty} e^{-\lambda_i t} e_i(p) e_i(q)| < \epsilon^\prime,
+\end{align}
+where $\epsilon^\prime= \frac{1}{32 \pi t}\exp\left(-\frac{\beta^2 t}{4}-\frac{2\sqrt{3dt} \beta}{3}\right) = \frac{1}{32 \pi t}$.
+
+By spherical harmonic addition theorem, we have
+\begin{align}
+\sum_{i=N_1}^{\infty} e^{-\lambda_i t} e_i(p) e_i(q) = \frac{1}{4\pi}\sum_{l=l_1}^{\infty}e^{-l(l+1)t}(2l+1) P_l(\cos d).
+\end{align}
+
+We can compute $\epsilon^\prime$ and the summation above numerically, and we find that $l_1=3$ makes truncation error is smaller than $\epsilon^\prime$.
+
+As a result, our embedding setting is $t=0.25$ and $m=8$.
+ 
+
+\subsubsection{Verification for Inequality (\ref{star})}
+
+We compute the second fundamental form of $\varphi(M)$ with ambient manifold $\R^m$. Through the numerical computation, the local reach for $\varphi(S^2)$ is approximately $0.646924$. 
+
+Substituting coefficients into the \cref{star}, it is
+\begin{align}
+	8\tau^2_{l,\varphi(S^2)} 
+	\geq \frac{9(1+0.05)^2\times 0.25}{2}\left(\log\left(8 \pi C_1(S^2)\right)\right),
+\end{align}
+by numerical computation, we have $C_1(S^2)$ is approximately $0.408912$. After computation, the left side is approximately $3.34809$, the right side is approximately $2.88982$. Therefore, there exist manifolds ensures that \cref{star} holds.

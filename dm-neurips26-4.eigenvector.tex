@@ -1,0 +1,131 @@
+\section{Finite sample error of Diffusion Map \texorpdfstring{$\varphi$}{phi}}
+        \label{sec:convergence}
+
+In this section, we consider the finite-sample DM. We use a result from \cite{DUNSON2021282} to derive an $l_\infty$ simultaneous convergence rate for the DM embedding of the sample points $\mathcal{X}_n=\left\{x_1,\dots,x_n\right\}\subset M \in \mathcal{M}$. This uniform bound shows that the finite-sample DM embedding points can be viewed as discrete samples from the differential-geometric DM embedding manifold studied in Section 3, with a vanishing approximation error. Consequently, the finite-sample DM embeddings asymptotically approximate the geometric structure of the DM embedding manifold studied in Section 3.
+
+We consider $n$ sample points $\mathcal{X}_n=\left\{x_1,\dots,x_n\right\}\subset M \in \mathcal{M}$, we define graph affinity matrix $W$ and the degree matrix $D$ as $W_{ij}=\frac{k_h (x_i,x_j)}{q_h(x_i)q_h(x_j)}, D_{ii}=\sum_{j=1}^n W_{ij}$,
+where $k_h(x,y)=\exp \left(-\frac{|x-y|^2}{4h^2}\right)$ is the Gaussian kernel and $q_h(x)=\sum_{i=1}^n k_h(x,x_i)$. Then the normalized graph Laplacian $L_n$ is defined as 
+\begin{align}
+\label{Lap matrix}
+L_n=\frac{D^{-1}W-I}{h^2}.
+\end{align}
+
+We denote the $i$-th eigenvalue of $-L_n$ as $\mu_{i,n,h}$ with corresponding eigenvector $\tilde{v}_{i,n,h}$ normalized in $l^2$ norm. It is easy to verify that $\mu_{0,n,h}=0$ and $\tilde{v}_{0,n,h} = \mathbbm{1}$. Let $\mathbb{N}(i)=|B_h(x_i) \cap \left\{x_1,\dots,x_n\right\}|$ which is the cardinality of points in the $h$-ball of $x_i$. Then we define the $l^2$ norm of $\tilde{v}$ with respect to inverse estimate density $1/\hat{p}$ as:
+\begin{align}
+	\|\tilde{v}\|_{l^2(1/\hat{p})} = \sqrt{\frac{|S^{d-1}|h^d}{d}\sum_{i=1}^{n}\frac{\tilde{v}^2(i)}{\mathbb{N}(i)}},
+\end{align}
+and we define $v_{i,n,h}=\frac{\tilde{v}_{i,n,h}}{\|\tilde{v}_{i,n,h}\|_{l^2(1/\hat{p})}}$.
+
+
+Let $\Delta$ be the Laplace-Beltrami operator of $M$, and $0=\lambda_0<\lambda_1\leq \lambda_2 \leq \cdots$ be the eigenvalues of $-\Delta$. Let $e_i$ be the eigenfunctions of $-\Delta$ corresponding to $\lambda_i$. Then we have
+\begin{theorem}  \cite[Thm. 2]{DUNSON2021282}
+	\label{thm:conver_rate}
+Let $M$ be a $d$-dimensional smooth, closed and connected Riemannian manifold embedded in $\R^D$, $f$ be the smooth probability density function on $M$ with infimum $f_{\min}>0$ and $\mathcal{X}_n=\left\{x_1, \dots,x_n\right\}$ be the point cloud sampled following $f$ independently and identically. Suppose eigenvalues of $\Delta$ are simple. For fixed $m\in \N$, denote $\Gamma_m=\min\limits_{1\leq i \leq m} \text{dist}(\lambda_i, \sigma(-\Delta)\backslash\left\{\lambda_i\right\})$, where $\sigma(-\Delta)$ is the spectrum of $-\Delta$. Suppose 
+\begin{align}
+	h \leq \mathcal{K}_1 \min \left(\left(\frac{\min(\mathsf\Gamma_m,1)}{\mathcal{K}_2+\lambda_m^{d/2+5}}\right)^2,\, \frac{1}{(\mathcal{K}_3+\lambda_m^{(5d+7)/4})^2}\right),
+\end{align}
+where $\mathcal{K}_1$ and $\mathcal{K}_2, \mathcal{K}_3>1$  are constants depending on $d$, $f_{\min}$, $\|f\|_{C^2}$, and the volume, the injectivity radius, the curvature and the second fundamental form of the manifold.
+Then, when $n$ is sufficiently large so that $h=h(n) \geq (\frac{\log n}{n})^{\frac{1}{4d+13}}$, with probability greater than $1-n^{-2}$, for all $0 \leq i < m$, 
+\begin{align}
+	|\mu_{i,n,h}-\lambda_{i}|\leq \Omega_1 h^{3/2}. 
+\end{align}
+And when $n$ is sufficiently large so that $h=h(n)\geq (\frac{\log n}{n})^{\frac{1}{4d+8}} $, with probability greater than $1-n^{-2}$, there are $a_i \in \{1,-1\}$ such that for all $0 \leq i <  m$, 
+	\begin{align}
+		\max_{x_j \in \mathcal{X}_n}|a_i v_{i,n,\epsilon}(j)-e_{i}(x_j)|\leq  \Omega_2 h^{1/2}.
+	\end{align}
+$\Omega_1$ depends on $d$, the diameter of $M$, $f_{\min}$, $\|f\|_{C^2}$, and $\Omega_2$ depends on $d$, the diameter and the volume of $M$, $f_{\min}$, and $\|f\|_{C^2}$.
+\end{theorem} 
+\begin{remark}
+In our setting, the sampling is uniform, thus $f \equiv 1/\text{Vol}(M)$,  which implies $\|f\|_{C^2} = 1/\text{Vol}(M)$. In addition, $d$, diameter, volume, injectivity radius, curvature and second order fundamental form are bounded uniformly, which are compact sets, thus $\mathcal{K}_1, \mathcal{K}_2, \mathcal{K}_3, \Omega_1,\Omega_2$ are bounded uniformly for all $M \in \MM$. In the case when the eigenvalues are not simple, the same proof still works by introducing the eigenprojection \cite{spectralapproximationoflinear}.
+\end{remark}        
+
+\begin{remark}
+If we choose $h=(\frac{\log n}{n})^{\frac{1}{4d+13}}$, then for large enough $n$, we have
+\begin{align}
+	|\mu_{i,n,h}-\lambda_{i}|\leq \Omega_1 (\frac{\log n}{n})^{\frac{3}{8d+26}}, \quad \text{for}\ 0\leq i \leq m.
+\end{align}
+Similarly, if we choose $h=(\frac{\log n}{n})^{\frac{1}{4d+8}}$, we have
+\begin{align}
+	\max_{x_j \in \mathcal{X}_n}|a_i v_{i,n,\epsilon}(j)-e_{i}(x_j)|\leq  \Omega_2 (\frac{\log n}{n})^{\frac{1}{8d+16}}, \quad \text{for}\ 0\leq i \leq m.
+\end{align}
+Since $(\frac{\log n}{n})^{\frac{1}{4d+13}} \geq (\frac{\log n}{n})^{\frac{1}{4d+8}}$, the inequalities above hold at the same time if we choose $h=(\frac{\log n}{n})^{\frac{1}{4d+13}}$.
+\end{remark}
+
+Now, we introduce our algorithm and estimate the approximation error.
+\begin{algorithm}[H]
+	\renewcommand{\algorithmicrequire}{\textbf{Input: }}
+	\renewcommand{\algorithmicensure}{\textbf{Output: }}
+	\caption{Diffusion Map}
+	\label{alg1}
+	\begin{algorithmic}[1]
+		\State \algorithmicrequire  point cloud $\mathcal{X}_n$, intrinsic dimension $d$, the lower bound of injectivity radius $\iota$ (\cref{injradius}), the lower bound of Ricci curvature $-\kappa$ (\cref{as:kappa}), upper bound of volume $V$ (\cref{ass:V}), norm error $\epsilon$ (\cref{range_of_e}).
+		\State Calculate bandwidth $h=(\frac{\log n}{n})^{\frac{1}{4d+13}}$, diffusion time $t=\min\left\{t_0(d,\kappa,\iota,\epsilon),4,\frac{\iota^2}{4}\right\}$ according to \cref{embeddingthm}, \cref{kernelerror}, \cref{injvol}
+		and embedding dimension $m=\max{N_0, N_1}+1$ according to \cref{embeddingthm}, \cref{kernelerror}.
+	
+			
+		\State Construct $W$ and $D$ with bandwidth $h$ according to \cref{Lap matrix}.
+		\State Calculate first $m$ eigenvalues and eigenfunctions $\left\{\mu_{i,n,h},\tilde{v}_{i,n,h}\right\}_{i=1}^m$ of $L_n=\frac{D^{-1}W-I}{h^2}$.
+		\State For $1\leq i \leq m$, calculate \begin{align}
+			\mathbb{N}(i)=|B_h(x_i) \cap \left\{x_1,\dots,x_n\right\}|.
+		\end{align}
+		Normalize 
+		\begin{align}
+			v_{i,n,h}=\frac{\tilde{v}_{i,n,h}}{\|\tilde{v}_{i,n,h}\|_{l^2(1/\hat{p})}}, \text{where } \|\tilde{v}\|_{l^2(1/\hat{p})} = 	\sqrt{\frac{|S^{d-1}|h^d}{d}\sum_{i=1}^{n}\frac{\tilde{v}^2(i)}{\mathbb{N}(i)}} .
+		\end{align}
+		\State Embed $x_j$ to $(t)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4}\left(e^{-\mu_{i,n,h}t/2}v_{i,n,h}(j)\right)_{i=1}^m$
+		\Ensure the embedding point clouds $\left\{(t)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4}\left(e^{-\mu_{i,n,h}t/2}v_{i,n,h}(j)\right)_{i=1}^m\right\}_{i=1}^n \subset \R^m$.
+	\end{algorithmic}
+\end{algorithm}
+
+We compare this embedding with embedding in \cref{sec:problem} and estimate the approximation error. 
+
+To estimate the error term, we consider the error of $i$-th component, for large enough $n$, i.e. 
+\begin{align}
+	(\frac{\log n}{n})^{\frac{1}{4d+13}} = h \leq \mathcal{K}_1 \min \left(\left(\frac{\min(\mathsf\Gamma_m,1)}{\mathcal{K}_2+\lambda_m^{d/2+5}}\right)^2,\, \frac{1}{(\mathcal{K}_3+\lambda_m^{(5d+7)/4})^2}\right)\\
+	\iff n > \frac{1}{\mathcal{K}} \max \left(\left(\frac{\mathcal{K}_2+\lambda_K^{d/2+5}}{\min(\mathsf\Gamma_K,1)}\right)^{8d+26},  (\mathcal{K}_3+\lambda_K^{(5d+7)/4})^{8d+26}\right),
+\end{align}
+up to a $\log$ factor.
+Then adding and subtracting $e^{-\mu_{i,n,h}t/2}e_i(x_j)$ and applying the triangle inequality, we obtain
+\begin{align}
+	|e^{-\mu_{i,n,h}t/2}v_{i,n,h}(j)-e^{-\lambda_it/2}e_i(x_j)| 
+	\leq |v_{i,n,h}(j)-e_i(x_j)| + \frac{t}{2}|\mu_{i,n,h}-\lambda_i| \|e_i\|_{l^\infty}.
+\end{align}
+
+We also have $\|e_i\|_{l^\infty} \leq \|e_i\|_{L^\infty} \leq C \lambda_{i}^{\frac{d-1}{4}}$,
+where $C$ only depends on injectivity radius and the absolute value of the sectional curvature \cite{ajm/1154098927}, which are compact, thus $C$ has a uniform upper bound for all $M\in \MM$. And we have proved that $\lambda_{i}$ are bounded from above for $i\leq m$ with fixed $m$. Consequently, $\|e_i\|_{l^\infty}$ has the uniform bound, we denote it as $C_\MM$.
+
+Therefore,
+\begin{align}
+	|e^{-\mu_{i,n,h}t/2}v_{i,n,h}(j)-e^{-\lambda_it/2}e_i(x_j)| &\leq \Omega_2 (\frac{\log n}{n})^{\frac{1}{8d+16}} + \frac{t}{2} C_\MM \Omega_1 (\frac{\log n}{n})^{\frac{3}{8d+26}} \\
+	&= \Omega (\frac{\log n}{n})^{\frac{1}{8d+16}},
+\end{align}
+hence
+\begin{align}
+|\left(e^{-\mu_{i,n,h}t/2}\tilde{v}_{i,n,h}(j)\right)_{i=1}^m - \left(e^{-\lambda_it/2}e_i(x_j)\right)_{i=1}^m| \leq \sqrt{m}\Omega (\frac{\log n}{n})^{\frac{1}{8d+16}}.
+\end{align}
+
+All prior convergence results control each column of the embedding matrix, i.e. eigenvector $v_{i,n,h}$ as a whole. In contrast, the bound above concerns the \textit{rows} of the embedding matrix: it controls all sample points $x_j$ simultaneously, which bounds the distance between the finite-sample and infinite-sample embedding uniformly over $j=1,\dots,n$. This row-wise guarantee lets us treat the finite-sample embedding as a discrete sample from the DM embedding with controlled pointwise error. It requires the $l^\infty$ control of the eigenvectors, since $l^2$ convergence only bounds the average error.
+
+\begin{remark}
+	Faster convergence rates for eigenvalues and eigenvectors have been obtained in $l^2$ norm \cite{garcia2020error, calder2022improved, calder2022lipschitz, cheng2022eigen}. However, these rates are not directly usable here, our analysis requires pointwise control of the embedding matrix, which is strictly stronger and cannot be derived from $l^2$ convergence. For comparasion, the exponent for $l^2$ convergence rate can be $1/(d+4)$, whereas the exponent for $l^\infty$ we use here is $1/(8d+16)$.
+\end{remark}
+
+\iffalse
+
+\subsection{Related Result}
+
+In this subsection, we discussed some other convergence results. In the following, we ignore the specific settings like sample size $n$, bandwidth $h$ and others, we only focus on the convergence rate and norm, when discussing the convergence, we also ignore the constant. We denote the eigenfunctions and eigenvalues of $\Delta$ as $e_i$, $\lambda_i$ and denote the eigenvectors and eigenvalues of graph laplacian as $\mu_{i}$, $v_{i}$, here we will not specify laplacian graph and  kernel function.
+
+
+In \cite{garcia2020error}, we have similar result, the following holds for finite $k$
+\begin{align}
+	\frac{1}{n}\sum_{i=1}^n (v_k(i)-e_k(x_i))^2 = O\left((\frac{\log n}{n})^\frac{1}{2d}\right),\\
+	|\mu_i - \lambda_{i}| =O\left((\frac{\log n}{n})^\frac{1}{2d}\right).
+\end{align}
+
+ And the author then improved the result to $O\left((\frac{\log n}{n})^\frac{1}{d+4}\right)$ under some other conditions in \cite{calder2022improved}. This convergence rate is much faster than we use, but the left side describe the average pointwise error. This result has also been improved\cite{calder2022lipschitz}, they obtained the convergence result for $l^\infty$, Lipschitz norm is $O\left((\frac{\log n}{n})^\frac{1}{d+4}\right)$ for specific manifold, however the constant $C$ in their result depends on $M$, which is difficult to quantify, so it cannot be applied to the family of manifolds.
+
+In \cite{cheng2022eigen}, the author derived the convergence rate of eigenvalues is $O\left((\frac{\log n}{n})^\frac{1}{d/2+2}\right)$, and the convergence rate of eigenvectors is $O\left((\frac{\log n}{n})^\frac{1}{d/2+3}\right)$ under different settings, and it also includes the results we discussed above. In\cite{wang2015spectral}, the convergence rate is $O\left(n^{-\frac{2}{(5d+6)(d+6)}}\right)$ under $l^\infty$ norm, which is a slower than result we use.
+
+\fi
+

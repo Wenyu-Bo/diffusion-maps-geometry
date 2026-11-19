@@ -1,0 +1,124 @@
+\section{Properties of the diffusion maps embedding \texorpdfstring{$\varphi(\mathcal{M})$}{phi(M)}}
+\label{sec:phiM-summary}
+In this section, we will discuss the properties of $\varphi(M)$, here we collect  the uniform estimates for the family $\varphi(\MM)$ and make explicit the logical chain that connects them. We will prove that the family $\varphi(\mathcal{M}) \in \mathcal{M}(\tau_{\varphi(M)},\textbf{L}^\prime)$ where $\textbf{L}^\prime:=\left(L_\perp^\prime,\dots,L_k^\prime\right)$ and the density function of $\varphi(M)\in  \varphi(\mathcal{M})$ admits uniform upper and lower bounds.
+The proofs are presented in full in \cref{phiM}; here we only state the results and indicate the logical chain.
+
+The dependency chain is
+\begin{center}
+\begin{tikzpicture}[
+    >=Stealth,
+    node distance=1.1cm and 1.5cm,
+    every node/.style={
+        draw,
+        rounded corners,
+        align=center,
+        font=\small,
+        inner sep=6pt
+    },
+    arr/.style={->, thick}
+]
+    % Main nodes
+	\node (par) at (-3, 0.5) {Geometric Parameters};
+    \node (iso) at (0, 2) {Almost Isometry};
+    \node (eig) at (0, 0.5) {Eigenvalue};
+    \node (der) at (2.5, 0.5) {Derivative};
+    \node (norm) at (5, 1.2) {Operator norm};
+    \node (L) at (7.5, 1.2) {$\textbf{L}^\prime$};
+
+    % Reach-related nodes
+    \node (heat) at (0, -0.8) {Heat kernel};
+    \node (local) at (5, 0.2) {Local reach};
+    \node (global) at (5, -0.8) {Global reach};
+    \node (reach) at (7.5, -0.4) {Reach};
+
+    % Density
+    \node (density) at (7.5, 2) {Pushforward Density};
+
+    % Arrows
+
+	\draw[arr] (par) -- (iso);
+	\draw[arr] (par) -- (eig);
+	\draw[arr] (par) -- (heat);
+
+    \draw[arr] (iso) -- (density);
+    \draw[arr] (iso) -- (norm);
+
+    \draw[arr] (eig) -- (der);
+    \draw[arr] (der) -- (norm);
+    \draw[arr] (norm) -- (L);
+
+    \draw[arr] (der) -- (local);
+
+    \draw[arr] (heat) -- (global);
+    \draw[arr] (local) -- (global);
+    \draw[arr] (local) -- (reach);
+    \draw[arr] (global) -- (reach);
+\end{tikzpicture}
+\end{center}
+
+To begin with, we establish the uniform upper bound on the eigenvalues.
+Using the Li--Yau estimates \cite[Thm. 16]{esteigenvalue}, the Laplacian eigenvalues grow at a controlled rate uniformly over the family $\MM$.
+
+\textbf{\cref{lem:lambdam-bound}.} 	There exists a constant $C$ depending only on the uniform geometric parameters $(d,\kappa,\mathrm{diam},V)$ of the family $\MM$, such that
+	\begin{align}
+		\lambda_k \leq C (k+1)^\frac{2}{d} \qquad \text{for all } M \in \MM.
+	\end{align}
+We next derive uniform bounds on the eigenfunction derivatives.
+Using the eigenvalue estimate in Step~1, together with estimates in \cite{2004Xuhigherorder}, we can control the derivatives of the eigenfunctions, and the coordinate derivatives of each component of $\varphi$.
+
+\textbf{\cref{lem:eigfn-deri-bound}.} 
+For every multi--index $\alpha$ with $|\alpha| \leq k$, there exists a constant $C_\alpha$ depending only on $\alpha$ and the uniform geometric parameters of $\MM$, such that
+	\begin{align}
+		|\partial^\alpha e_\lambda(x)| \leq C_\alpha (1+\lambda)^{k/2+d/4}, \qquad |\alpha| \leq k.
+	\end{align}
+Consequently, since $\lambda_k$ is bounded above by $C(\MM)(k+1)^\frac{2}{d}$, $\varphi_j = (2t)^\frac{d+2}{4}\sqrt{2}(4\pi)^\frac{d}{4}e^{-\lambda_1 t}e_j(x)$, then the coordinate derivatives of $\varphi$ up to order $k$ are uniformly bounded over $M \in \MM$.
+
+
+With the bound on the eigenfunction derivatives, we turn to the uniform bound on the operator norm of $d^l\varphi$.
+Computing coordinate representation for the covariant derivatives and pluging in the bound from Step~2 with the bound of Christoffel symbols, we obtain the bound on the operator norm of $d^l \varphi$.
+
+\textbf{\cref{lem:covar-deri-bound}.} 
+For every $l \leq k$, there exists a constant $A(l)$, depending only on $l$ and the uniform geometric parameters of $\MM$, such that
+	\begin{align}
+		\|d^l \varphi\| \leq \sqrt{m}\,A(l)\,d^{l/2} \quad \text{for all } M \in \MM.
+	\end{align}
+
+We next control the parametrization remainder uniformly.
+Expanding the remainder of the local parametrization of $\varphi(M)$ through
+Fa\`a di Bruno's formula, each term is a composition of derivatives of $\varphi$
+(bounded in Step~3), derivatives of the original remainder $\Psi_p$ (bounded
+by Assumption~\ref{as:smooth}), and derivative of the inverse of $\varphi$ (bounded due to embedding is almost isometric), hence obtaining a parameter vector $\textbf{L}^\prime:=\left(L_\perp^\prime,\dots,L_k^\prime\right)$ controlling the remainder over $\varphi(\MM)$.
+	
+\textbf{\cref{lem:remainder-bound}.} There exists $\textbf{L}^\prime:=\left(L_\perp^\prime,\dots,L_k^\prime\right)$ depending only on the uniform geometric parameters of $\MM$, such that for every $M \in \MM$ and every $p^\prime=\varphi(p)$, the remainder satisfies \begin{align}
+N^\prime_{p^\prime}(0)=0, d_0 N^\prime_{p^\prime}=0, \text{ and } \|d^l_{v^\prime} N^\prime_{p^\prime}\| \leq L_l^\prime \text{ for } 2 \leq l \leq k.
+\end{align}
+
+
+We then establish the uniform bound on the pushforward density.
+Since $\varphi$ is almost isometric ($|\,\|d\varphi\|-1|<\epsilon$), the Jacobian factor stays close to $1$, so the pushforward sampling density $g$ of $\varphi_\# P$ stays comparable to the original density $f$ of the distribution $P$.
+
+\textbf{\cref{lem:density-bound}.} 
+Suppose $\epsilon \leq \frac{1-4^{-1/d}}{3}$, then for every $M \in \MM$ the Jacobian factor of $\varphi$ lies in $(\tfrac12,2)$, and consequently the pushforward density $g$ of $\varphi_\# P$ obeys $\tfrac{f_{\min}}{2} < g < 2 f_{\max}$. 
+
+
+Finally, we derive a uniform lower bound on the reach.
+Writing $\tau = \min\{\tau_l,\tau_g\}$, we bound the local and global reach separately.
+The local reach is controlled through the second fundamental form of $\varphi(M)$,
+whose operator norm is estimated directly from the second-order eigenfunction
+derivative.
+
+\textbf{\cref{lem:local-reach} (Local reach).} There exists a constant $\tau_{l,\varphi(\MM)}>0$, depending only on the uniform geometric parameters of $\MM$ and on $(m,t_0)$, such that
+	\begin{align}
+		\tau_{l,\varphi(M)} \geq \tau_{l,\varphi(\MM)} >0, \quad \text{for all $\varphi(M) \in \varphi(\MM)$.}
+	\end{align}
+
+For the global reach, we split the proof according to three ranges of the geodesic distance $d(p,q)$, with $s_0 = 2\sqrt{2}\,\tau_{l,\varphi(M)}$ and a threshold $s_1$:
+\begin{enumerate}
+	\item[(i)] $d(p,q) \leq s_0/(1+\epsilon)$. We get $d(\varphi(p),\varphi(q)) \leq s_0$ since $\varphi$ is almost isometric, and by local linear approximation (\cref{lem:geodis_eucdis,lem:global_case}) shows $\varphi(p),\varphi(q)$ cannot form a bottleneck.
+	\item[(ii)] $d(p,q) > s_1$. Heat-kernel estimates give the global reach condition $|\varphi(p)-\varphi(q)| > r_1 > 0$ (\cref{global condition}).
+	\item[(iii)] $s_0/(1+\epsilon) < d(p,q) < s_1$. It is empty whenever $(*)$ holds, where (i) and (ii) already cover all cases. If $(*)$ fails, we verify $d(p,q)$ in this interval. We use a tighter lower bound on $s_0$, and a short time expansion of the heat kernel that controls $K(t,p,p)-K(t,p,q)$.
+\end{enumerate}
+Since the three ranges cover all $d(p,q) > 0$, the global reach of $\varphi(M)$ is bounded below by a positive constant uniformly over $\varphi(\MM)$. Together, the local and global bounds give the reach theorem.
+
+\textbf{\cref{thm:reach-bound}.} There exists a positive constant $\tau_{\varphi(\MM)}$, depending only on the uniform geometric parameters of $\MM$ and on $(m,t_0)$, such that $\tau_{\varphi(M)} \geq \tau_{\varphi(\MM)} > 0$ for all $M \in \MM$.
+

@@ -1,0 +1,208 @@
+\documentclass{article}
+
+% if you need to pass options to natbib, use, e.g.:
+%     \PassOptionsToPackage{numbers, compress}{natbib}
+% before loading neurips_2024
+% ready for submission
+% \usepackage[main, final]{neurips_2026}
+\usepackage[main,final]{neurips_2026}
+% to compile a preprint version, e.g., for submission to arXiv, add add the
+% [preprint] option:
+%     \usepackage[preprint]{neurips_2024}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+%     \usepackage[final]{neurips_2024}
+% to avoid loading the natbib package, add option nonatbib:
+%    \usepackage[nonatbib]{neurips_2024}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{xcolor}         % colors
+
+%% --- our preambles --------------
+
+%% --- packages from Wenyu's latex file
+\usepackage{bbm}
+\usepackage{natbib}
+\setcitestyle{numbers,square}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+%% --- Wenyu's Packages end here.
+\usepackage{amsmath}
+\usepackage{amsthm,amsfonts}
+\usepackage{graphicx}
+\usepackage{autobreak}
+\usepackage{diagbox}
+
+% --- 
+% \usepackage{geometry}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% \usepackage{fdsymbol}
+\usepackage{float} 
+% \usepackage{subfig} 
+%\usepackage{cite}    % --- need natbib
+%\usepackage[apaciteclassic]{apacite}
+% \usepackage{listings}
+% \usepackage{setspace}
+% \usepackage{cancel}
+\usepackage{mathrsfs,color}
+% \usepackage[normalem]{ulem}
+\usepackage{cleveref}
+\usepackage{booktabs}
+\graphicspath{ {Figures/} }
+%\doublespacing
+%\geometry{a4paper,scale=0.8}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}    % lemma --> proposition
+
+% I change prop to lemma
+
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{remark}{Remark}
+\newtheorem{assumption}{Assumption}
+\newtheorem{prop}[theorem]{Proposition}
+
+\newtheorem{Atheorem}[theorem]{Theorem}
+\newtheorem{Alemma}[theorem]{Proposition}
+\newtheorem{Acorollary}[theorem]{Corollary}
+\newtheorem{Aprop}[theorem]{Proposition}
+
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{Lemma}{Lemmas}
+\crefname{corollary}{Corollary}{Corollaries}
+\crefname{assumption}{Assumption}{Assumptions}
+\crefname{prop}{Proposition}{Propositions}
+
+\Crefname{theorem}{Theorem}{Theorems}
+\Crefname{lemma}{Lemma}{Lemmas}
+\Crefname{corollary}{Corollary}{Corollaries}
+\Crefname{assumption}{Assumption}{Assumptions}
+\Crefname{prop}{Proposition}{Propositions}
+
+\newcommand{\cit}{\textbf{(need citation)}}
+
+\newcommand{\CC}{\mathcal{C}}
+\newcommand{\DD}{\mathcal{D}}
+\newcommand{\EE}{\mathcal{E}}
+\newcommand{\LL}{\mathcal{L}}
+\newcommand{\UU}{\mathcal{U}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\om}{\omega}
+\newcommand{\de}{\Delta(\eps)}
+\newcommand{\ue}{u_{\alpha}(\eps}
+\newcommand{\bsob}{\mathrm{H}_0}
+\newcommand{\sob}{\mathrm{H}}
+\newcommand{\Sa}{\mathrm{Sa}}
+%\newcommand{\Sa}{\mathrm{S}}
+\newcommand{\spec}{\mathrm{spec}}
+\newcommand{\wenyu}[1]{\textcolor{blue}{ #1}}
+%\newcommand{\wenyu}[1]{\textcolor{blue}{}}
+% MMP commands
+\newcommand{\mmp}[1]{\textcolor{red}{ #1}}
+%\renewcommand{\mmp}[1]{}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\XX}{\mathcal{X}}
+\newcommand{\tilXX}{\tilde{\mathcal{X}}}
+\newcommand{\tiln}{\tilde{n}}
+
+\newcommand{\rrr}{\mathbb{R}}
+
+\newcommand{\grad}{\operatorname{grad}}
+%\newcommand{\div}{\operatorname{div}}
+\newcommand{\wfs}{{\rm wfs}}
+
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother  
+
+%***************** end preamble ***********************
+
+\title{How well behaved is finite dimensional Diffusion Maps embedding?}
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+\author{%
+  Wenyu Bo \\
+    Cheriton School of Computer Science\\
+    University of Waterloo\\
+    Waterloo, ON \\
+    \texttt{w3bo@uwaterloo.ca} \\
+  \And
+  Marina Meil\u{a}  \\
+  Cheriton School of Computer Science\\
+    University of Waterloo\\
+    Waterloo, ON \\
+  \texttt{mmp@uwaterloo.ca}
+   % \AND for new line
+}
+
+\begin{document}   %-------******************----------------------------
+
+
+\maketitle
+
+\begin{abstract}
+  	Diffusion Maps (DM) is a well studied and popular non-linear dimension reduction algorithm. Surprisingly, while the convergence properties of DM are well understood, the {\em geometric} properties of the embedding, such as reach and smoothness have not yet been studied. Under a set of standard assumptions on a family of submanifolds $\subset \R^D$, we derive a series of geometric properties that are preserved by DM, including almost uniform density, finite polynomial approximation and reach. Leveraging these properties, we establish rigorous bounds on the embedding errors introduced by the DM algorithm, of the order $(\frac{\log n}{n})^{\frac{1}{8d+16}}$. 
+    \iffalse
+    Furthermore, by using a subsampling setting, we quantify the error between the estimated tangent spaces and the true tangent spaces over the submanifolds after the DM embedding to be $\sim(\frac{\log n }{n})^\frac{k-1}{(8d+16)k}$,  providing a precise characterization of the geometric accuracy of the embeddings. 
+    \fi
+    These results offer a solid theoretical foundation for understanding the performance and reliability of DM in practical applications.
+\end{abstract}
+
+
+\input{dm-neurips26-1.intro} 
+\input{dm-neurips26-2.background-concise}   % dm-arxiv-assumptions.tex merged here
+\input{dm-neurips26-3.phim-concise}
+
+\input{dm-neurips26-4.eigenvector}
+%\input{dm-arxiv-tangent}    %% -- do we need this
+\input{dm-neurips26-5.exp} 
+\input{dm-neurips26-6.conclusion} 
+
+\begin{ack}
+  This research was supported by the Canada Research Chairs Program, by the Vector Institute for AI, through the CIFAR Pan-Canadian AI Strategy, the Government of Ontario, and leading industry sponsors from across the Canadian economy, and by the Cheriton School of Computer Science, University of Waterloo. Parts of this research were conducted while the authors were with the Department of Statistics, University of Washington. The authors thank the anonymous reviewers for their helpful comments and suggestions. M.M. gratefully acknowledges the DataShape Group at INRIA Saclay and the Institute for Mathematical and Statistical Innovation (IMSI) for hospitality while a portion this research was carried out.
+\end{ack}
+
+%\section*{References}
+%\input{dm-arxiv.bbl}
+\bibliographystyle{ieeetr}
+\bibliography{refs}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\appendix
+\counterwithin{theorem}{section}
+\input{dm-neurips26-A.phim}
+\input{dm-neurips26-A1.phim-derivatives}
+\input{dm-neurips26-A2.phim-reminder}
+\input{dm-neurips26-A3.phim-density}
+\input{dm-neurips26-A4.phim-reach}
+\input{dm-neurips26-A41.phim-reach-local}
+\input{dm-neurips26-A42.phim-reach-global}
+\counterwithin{theorem}{section}
+\input{dm-neurips26-B.12leftover-proofs}
+\input{dm-neurips26-B.3phim-parameter-selection}
+\input{dm-neurips26-B.4phim-S2-verification}
+\input{dm-neurips26-C.moreExp}
+
+\newpage
+\input{checklist}
+\end{document}
+***********************************

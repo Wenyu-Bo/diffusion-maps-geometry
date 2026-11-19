@@ -1,0 +1,130 @@
+\subsection{Selection of \texorpdfstring{$t_0, m$}{t0, m}}
+
+\subsubsection{Selection of \texorpdfstring{$t_0$}{t0}}
+For $t_0$, see theorem 4.4 in \cite{portegies2016embeddings}.
+We define 
+\begin{align}
+	\Gamma(s,x,y) := r^d K(sr^2, u^{-1}(xr),u^{-1}(yr)),
+\end{align}
+where $u : B_r(p) \rightarrow \mathbb{R}^d$ is the harmonic coordinates.
+
+We select $R_1 = R_1(d,\epsilon)$ such that, $\frac{1}{2}\leq s \leq 2$, 
+\begin{align}
+	\int_{\mathbb{R}^d \backslash B_{R_1}(0)} |\nabla \Gamma(s,0,y)|^2 dy < \epsilon.
+\end{align}
+
+We set $\alpha=\frac{1}{2}$ and $Q>1$ such that 
+\begin{align}
+	2(Q-1)C(d,\alpha) \leq \sigma,
+\end{align}
+where $C(d,\alpha)$ is the constant in Lemma 6.1 of \cite{portegies2016embeddings} and $\sigma \leq \sigma_1(d,\epsilon)$ such that $C(d,\alpha)\sigma |B_{R_1}(0)| < \epsilon$.
+
+We also set $R_0=R(d,\alpha, C(d),Q)$ is the radius in Lemma 6.1, where $C(d)$ is the constant as below:
+\begin{align}
+	|\nabla\Gamma(s,x,y)| \leq \frac{C(d)}{s^{(d+1)/2}}\exp\left(-\frac{|x-y|^2}{8}\right).
+\end{align}
+
+Let $r_h := r_h(d,\kappa,\iota,\alpha,Q)$ be the harmonic radius, and set $r_3 = r_3(d,\kappa,\iota,\epsilon)< r_h/2$ such that for $t< 2r_3^2$, then
+\begin{align}
+	(2t)^{\frac{d+2}{2}}\int_{M\backslash B_{r_h/2}(p)}|\nabla K(t,p,q)|^2 dq <\epsilon.
+\end{align}
+
+Now we set 
+\begin{align}
+	r_0 = \min \left\{\frac{r_h}{R_0},\frac{r_h}{R_1},r_3\right\},
+\end{align}
+then $t_0 = r_0^2/2$.
+
+\subsubsection{Selection of \texorpdfstring{$N_0$}{N0}}
+According to theorem 4.4 in \cite{portegies2016embeddings}, 
+\begin{align}
+	\mathcal{H}(p)(q):= (2t)^{\frac{d+2}{4}}\sqrt{2}(4\pi)^{d/4} K(t,p,q)
+\end{align}
+is an embedding of $M$ into $L^2(M)$ with 
+\begin{align}
+	1-\epsilon < \|(d\mathcal{H})_p\|<1+\epsilon.
+\end{align}
+
+In addition, there is an isometry from $L^2(M)$ to $l^2$ by
+\begin{align}
+	U(f)_j=\int_M f(q) e_j(q) dq.
+\end{align}
+
+Then,
+\begin{align}
+	p\in M \overset{\mathcal{H}}{\rightarrow} \mathcal{H}(p) \in L^2(M) \overset{U}{\rightarrow} U(\mathcal{H}(p))
+\end{align}
+is an embedding, i.e.
+\begin{align}
+	\mathcal{F}(p) := (2t)^{\frac{d+2}{4}}\sqrt{2}(4\pi)^{d/4} \left(e^{-\lambda_1 t} e_1(p),e^{-\lambda_2 t} e_2(p),\dots\right)
+\end{align}
+is an embedding. We ignore the $e_0$ since it is the constant.
+
+Therefore, for any $v \in T_p M$ with $|v|=1$, we have
+\begin{align}
+	2 (2t)^\frac{d+2}{2}(4\pi)^{d/2} \sum_{i=1}^{\infty} e^{-2\lambda_i t} (\nabla e_i (v))^2 = \|(d\mathcal{F})_p\|^2= \|(d\mathcal{H})_p\|^2 \in \left((1-\epsilon)^2,(1+\epsilon)^2\right).
+\end{align}
+
+In \cref{sec:phim-higher-deri}, we derived 
+\begin{align}
+	\|\nabla e_j\| \leq C \lambda_j^{\frac{d+2}{4}},
+\end{align}
+thus 
+\begin{align}
+2 (2t)^\frac{d+2}{2}(4\pi)^{d/2} \sum_{i=1}^{\infty} e^{-2\lambda_i t} (\nabla e_i (v))^2 \leq 2C (2t)^\frac{d+2}{2}(4\pi)^{d/2} \sum_{i=1}^{\infty} e^{-2\lambda_i t}  \lambda_j^{\frac{d+2}{2}}.
+\end{align}
+
+Furthermore, $\lambda_i$ is bounded from below by
+\begin{align}
+	\lambda_i ^ {d/2} \geq \alpha(d) \frac{i}{V} \left(\frac{V}{\int_{0}^{\text{diam}} F_\kappa(r)dr}\right)^{n(n+1)/(n-1)},
+\end{align}
+where $F_\kappa(r) = \begin{cases} 
+	(-\kappa)^{-1/2} (\sinh \sqrt{-\kappa} r)^{n-1} & \text{if } \kappa<0, \\
+	r^{n-1} & \text{if } \kappa = 0, \\
+	(\kappa)^{-1/2} (\sinh \sqrt{\kappa} r)^{n-1} & \text{if } \kappa<0.
+\end{cases}$ and $\kappa(n-1)$ is the lower bound of Ricci curvature of $M$\cite{Cheng1981}. Therefore, $\lambda_i \geq c i^{2/d}$ for some uniform constant $c$, when $i$ is large enough, we have 
+\begin{align}
+	e^{-2\lambda_it} \lambda_i^ {\frac{d+2}{2}} \leq e^{-\lambda_i t} \leq e^{-c i^{2/d} t},
+\end{align}
+then
+\begin{align}
+2C (2t)^\frac{d+2}{2}(4\pi)^{d/2} \sum_{i=N_0}^{\infty} e^{-2\lambda_i t}  \lambda_j^{\frac{d+2}{2}} \leq C^\prime \sum_{i=N_0}^{\infty} e^{-c i^{2/d} t}.
+\end{align}
+
+It is easy to verify that the tail can be controlled to arbitrary small, thus we can truncate $\mathcal{F}$ by $\mathcal{F}^{N_0}$:
+\begin{align}
+	\mathcal{F}^{N_0}(p) := (2t)^{\frac{d+2}{4}}\sqrt{2}(4\pi)^{d/4} \left(e^{-\lambda_1 t} e_1(p),\dots, e^{-\lambda_{N_1} t} e_{N_1}(p)\right)
+\end{align}
+such that $1-\epsilon < \|\mathcal{F}^{N_0}\| <1+\epsilon$.
+
+
+\subsubsection{Selection of \texorpdfstring{$N_1$}{N1}}
+
+We need find $N_1=N_1(d,\kappa,\iota,V,\epsilon^\prime,t_0)$ such that $|K_m(t^\prime,p,\cdot)-K(t^\prime,p,\cdot)|\leq \epsilon^\prime$ holds for any $m\geq N_1$ and any $t^\prime$ with $t_0\leq t^\prime \leq 4$.
+
+In fact,
+\begin{align}
+	|K_{m}(t^\prime,p,q)-K(t^\prime,p,q)| = |\sum_{i=m}^{\infty} e^{-\lambda_i t^\prime} e_i(p)e_i(q)| \\
+	\leq \sum_{i=N_1}^{\infty} e^{-\lambda_i t^\prime}| e_i(p)| |e_i(q)|.
+\end{align}
+We also have the estimate for L-infinity norm of eigenfunction \cite{ajm/1154098927}:
+\begin{align}
+	\|e_i(p)\|_{L^\infty} \leq C(d,\kappa,\iota) \lambda_i^ {\frac{d-1}{4}} \|e_i(p)\|_{L^2}.
+\end{align}
+Therefore, we have
+\begin{align}
+		|K_m(t^\prime,p,q)-K(t^\prime,p,q)| \leq C(d,\kappa,\iota) \sum_{i=N_1}^{\infty} e^{-\lambda_i t^\prime} \lambda_i^ {\frac{d-1}{2}}.
+\end{align}
+
+Similarly, $\lambda_i \geq 2c i^{2/d}$ for some uniform constant $c$, when $i$ is large enough, we have 
+\begin{align}
+	e^{-\lambda_i t^\prime} \lambda_i^ {\frac{d-1}{2}} \leq e^{-\lambda_i t^\prime /2} \leq e^{-c i^{2/d} t^\prime},
+\end{align}
+thus
+\begin{align}
+|K_m(t^\prime,p,q)-K(t^\prime,p,q)| \leq C(d,\kappa,\iota) \sum_{i=N_1}^{\infty} e^{-c i^{2/d} t^\prime}.
+\end{align}
+
+It is obvious that $\sum_{i=1}^{\infty} e^{-c i^{2/d} t^\prime}$ converges, so there exists  $N_1=N_1(d,\kappa,\iota,V,\epsilon^\prime,t_0)$ such that $|K_m(t^\prime,p,\cdot)-K(t^\prime,p,\cdot)|\leq \epsilon^\prime$. 
+
+We notice that more precise estimate of eigenvalues and eigenfunction can make $N_1$ smaller, here we only list one possible method for selection.

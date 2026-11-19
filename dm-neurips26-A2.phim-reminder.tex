@@ -1,0 +1,63 @@
+\subsection{Uniform upper bounds  \texorpdfstring{$\left\{L_{\perp},L_3,\dots,L_k\right\}$}{L\_perp,L\_3, \dots, L\_k} on the higher derivatives of the local parametrization reminder}
+\label{sec:phim-L}
+
+In this section, we will verify that there exists an common parameter set $\textbf{L}^\prime:=\left\{L_{\perp}^\prime,L_3^\prime,\dots,L_k^\prime\right\}$ such that the operator norm of the derivatives of remainder $N_{\varphi(p)}$ defined in Assumption \ref{as:smooth} can be controlled uniformly over $\varphi(\MM)$, which is builded on the uniform bound on $\|d^l \varphi\|$ from \cref{lem:covar-deri-bound}.
+
+\begin{lemma}[Uniform control of the parametrization remainder]
+	\label{lem:remainder-bound}
+	There exists a common parameter vector $\textbf{L}^\prime:=\left(L_\perp^\prime,\dots,L_k^\prime\right)$, depending only on the uniform geometric parameters of $\MM$, such that for every $M \in \MM$ and every $p^\prime=\varphi(p) \in \varphi(M)$ the local parametrization remainder $N^\prime_{p^\prime}$ satisfies $N^\prime_{p^\prime}(0)=0$, $d_0 N^\prime_{p^\prime}=0$, and
+	\begin{align}
+		\|d^l_{v^\prime} N^\prime_{p^\prime}\| \leq L_l^\prime \qquad \text{for } 2 \leq l \leq k.
+	\end{align}
+\end{lemma}
+
+\begin{proof}[Proof of \cref{lem:remainder-bound}]
+We fix a point $p^\prime=\varphi(p) \in \varphi(M)$, for $v^\prime \in T_{p^\prime}\varphi(M)=d\varphi_p(T_pM)$, we define 
+\begin{align}
+	\Psi^\prime_{p^\prime}(v^\prime)=\varphi(\Psi_p(d(\varphi^{-1})_{p^\prime} (v^\prime)))=p^\prime+v^\prime+N^\prime_{p^\prime}(v^\prime)
+\end{align}
+from definition of $\Psi_p$, we know $\Psi^\prime_{p^\prime}(v^\prime)$ and $N^\prime_{p^\prime}(v^\prime)$ are well defined when $\Vert d(\varphi^{-1})_{p^\prime}(v^\prime)\Vert \leq \frac{1}{4L_\perp}$. 
+
+We estimate $\|d \varphi^{-1}_{p^\prime}\|$: We can treat $T_p M$ as a
+$d$ dimensional subspace of $\mathbb{R}^D$ and treat $T_{p^\prime}
+\varphi(M)$ is a  $d$ dimensional subspace of $\mathbb{R}^m$, and these
+inclusions are canonical and isometric, so they are both closed
+subspaces. And $d \varphi_p$ is homeomorphism, so graph of $d
+\varphi^{-1}_{p^\prime}$ is closed, then $d \varphi^{-1}_{p^\prime}$
+is bounded, i.e. $\|d \varphi^{-1}_{p^\prime}\|$ exists.
+\begin{align}
+	\|d \varphi^{-1}_{p^\prime}\|&=\sup \left\{\|d\varphi^{-1}_{p^\prime} v^\prime \|: v^\prime \in Im(d\varphi_p), \|v^\prime\| = 1\right\} \\
+	&=\sup \left\{\frac{\|v\|}{\|d\varphi_p v\|}: v^\prime \in Im(d\varphi_p), \|v^\prime\| = 1, v=d \varphi^{-1}_{p^\prime} v^\prime\right\} \\
+	&=\sup \left\{\frac{1}{\|d\varphi_p v\|}: \|v\| = 1\right\} \\
+	&\leq \frac{1}{1-\epsilon}
+\end{align}
+so when $\|v^\prime\| \leq \frac{1}{4L_\perp(1-\epsilon)}$, $\Vert d(\varphi^{-1})_{p^\prime}(v^\prime)\Vert \leq \frac{1}{4L_\perp}$, then $\Psi^\prime_{p^\prime}(v^\prime)$ and $N^\prime_{p^\prime}(v^\prime)$ are well defined.
+
+
+Now, We check $N^\prime_{p^\prime}(0)=0$ and $d_0N^\prime_{p^\prime}=0$:
+\begin{align}
+	N^\prime_{p^\prime}(0)+p^\prime=\varphi(\Psi_p(d(\varphi^{-1})_{p^\prime}(0)))=\varphi(\Psi_p(0))=\varphi(p+0+N_p(0))=\varphi(p)=p^\prime\\
+	d_0N^\prime_{p^\prime}=d\varphi_p d_0\Psi_p d(\varphi)_{p^\prime}^{-1}-I_m=d\varphi_p(I_D+d_0N_p) d(\varphi)_{p^\prime}^{-1}-I_m=0
+\end{align}
+
+We assume $\|v^\prime\| \leq \frac{1}{4L_\perp(1-\epsilon)}$ and denote $d\varphi_{p^\prime}^{-1}v^\prime$ as $v$, and $c(v^\prime)=p+v+N_p(v)$, then for any unit vector $w^\prime \in T_{p^\prime} \varphi(\mathcal{M})$, using Faà di Bruno's formula, we have
+\begin{align}
+	\left\|d^k_{v^\prime}N^\prime_{p^\prime}(w^{\prime \otimes k})\right\| \!= \! \left\| \sum\limits_{\pi \in P(k)} \! d^l_{c(v^\prime)} \varphi \circ \! \left(d^{j_1}_v \Psi_p \! \left(\left\{d_{p^\prime}\varphi^{-1} w^\prime\right\}^{\otimes j_{1}}\right),\dots,d^{j_l}_v \Psi_p \! \left(\left\{d_{p^\prime}\varphi^{-1} w^\prime\right\}^{\otimes j_{l}}\right) \right)\right\|,
+\end{align}
+where $P(k)$ is a partition of $k$ with $l$ parts such that $j_1+\dots+j_l=k$.
+
+
+Since $\Psi_p(v)=p+v+N_p(v)$, so $d_v \Psi_p = I+ d_v N_p$, $d^i_v \Psi_p = d^i_v N_p$, thus
+\begin{align}
+	\|d_v \Psi_p\| = \| I+ d_v N_p \| \leq 1 + L_\perp \|v\| \\
+	\|d^i_v \Psi_p\| =\|d^i_v N_p\| \leq L_i
+\end{align}
+therefore
+\begin{align}
+\|d^k_{v^\prime}N^\prime_{p^\prime}(w^{\prime \otimes k})\| &\leq \sum\limits_{\pi \in P(k)} \|d^l \varphi\| \prod_{i=1}^l \| d^{j_i} \Psi_p\| \|d_{p^\prime}\varphi^{-1} w^\prime\|^{j_i} \\
+&\leq \sum\limits_{\pi \in P(k)} \|d^l \varphi\| \frac{1}{(1-\epsilon)^l} \prod_{i=1}^l \| d^{j_i} \Psi_p\| 
+\end{align}
+
+
+We have proved $\|d^j \varphi\|$ and $\|d^j_v \Psi_p\|$ have the uniform upper bound for $j=2,\dots,k$ in \cref{lem:covar-deri-bound}, so we can select $\textbf{L}^\prime:=\left(L_\perp^\prime,\dots,L_k^\prime\right)$ as the uniform upper bound of $\|d^2_{v^\prime}N^\prime_{p^\prime}\|,\dots,\|d^k_{v^\prime}N^\prime_{p^\prime}\|$.
+\end{proof}

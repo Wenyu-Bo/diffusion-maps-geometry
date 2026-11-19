@@ -1,0 +1,144 @@
+\section{Supplemental material}
+% \renewcommand{\thetheorem}{B.\arabic{theorem}}
+\subsection{Pushforward Density}
+
+Here we list the lemma and theorem for estimating pushforward density.
+
+\begin{lemma}{(Area Formula)}\cite{federer1969geometric}
+	\label{lem:area}
+	If $f: \mathbb{R}^m \rightarrow \mathbb{R}^n$ is Lipschitzian and $m \leq n$, then
+	\begin{align*}
+		\int_A g(f(x)) J_f(x) d \mathcal{L}^m x = \int_{\mathbb{R}^n} g(y) N(f|A,y) d\mathcal{H}^m y
+	\end{align*}
+	where $A$ is an lebesgue measurable set, $J_f(x)$ is the Jacobian $\sqrt{\det(d_x f^T d_x f)}$ and $g: \mathbb{R}^n \rightarrow \mathbb{R}$ and $N(f|A,y) < \infty$ for $\mathcal{H}^m$ almost all $y$.
+\end{lemma}
+
+
+\begin{lemma}
+	\label{thm:push_density}
+	If $P$ is distribution on $\mathcal{M}$ with density $f$ with respect to the $d$-dimensional Hausdorff measure and $\varphi$ is a diffeomorphism, then the density $g(p^\prime)$ with respect to $d$-dimensional Hausdorff measure of $P^\prime:= \varphi_\# P$ is 
+	\begin{align*}
+		g(p^\prime)=f(p)/\sqrt{\det \left(\pi_{T_p M} \circ d\varphi_p^T \circ d\varphi_p |_{T_pM}\right)}
+	\end{align*}
+	where $p=\varphi^{-1}(p^\prime)$. 
+\end{lemma}
+
+\begin{proof}[Proof of \cref{thm:push_density}]
+	Let $p \in \mathcal{M}$ be a fixed point and choose $r$ small enough such that exponential map $\Psi_p: T_p \mathcal{M} \rightarrow \mathbb{R}^D$ is an injection onto $B(p,r)\cap \mathcal{M}$. 
+	
+	Choose $A \subset B(p,r)\cap \mathcal{M}$, by definition of pushforward measure, we have
+	\begin{align*}
+		\int_{\varphi(A)} d P^\prime=\int_A dP =\int_A f(y) d\mathcal{H}^d y
+	\end{align*}
+	Since $\Psi_p$ is an injection, so $N(\Psi_p|\Psi_p^{-1}(A),y)=1$ for all $y \in A$ and $0$ otherwise. By \cref{lem:area}, we have
+	\begin{align*}
+		\int_A f(y) d\mathcal{H}^d y=\int_{\Psi_p^{-1}(A)} f(\Psi_p(x)) J_{\Psi_p}(x) d \mathcal{L}^d x
+	\end{align*}
+	And $\varphi$ is diffeomorphism, so $h=\varphi \circ \Psi_p$ is also injective, so
+	\begin{align*}
+		\int_{\Psi_p^{-1}(A)} f(\Psi_p(x)) J_{\Psi_p}(x) d \mathcal{L}^d x&=\int_{\Psi_p^{-1}(A)} f(\varphi^{-1}(h(x))) \frac{J_{\Psi_p}(h^{-1}(h(x)))}{J_{\varphi \circ \Psi_p}(h^{-1}(h(x)))} J_{\varphi \circ \Psi_p}(x)) d \mathcal{L}^d x \\
+		&=\int_{\varphi(A)} f(\varphi^{-1}(z)) \frac{J_{\Psi_p}(h^{-1}(z))}{J_{\varphi \circ \Psi_p}(h^{-1}(z))} d \mathcal{H}^dz
+	\end{align*}
+	Thus 
+	\begin{align*}
+		\int_{\varphi(A)} d P^\prime=\int_{\varphi(A)} f(\varphi^{-1}(z)) \frac{J_{\Psi_p}(h^{-1}(z))}{J_{\varphi \circ \Psi_p}(h^{-1}(z))} d \mathcal{H}^dz
+	\end{align*}
+	$T_p \mathcal{M}$ is a subspace of $\mathbb{R}^D$ with dimension $d$, so we can choose basis of $T_p \mathcal{M}$ such that all elements in diagonal of transformation matrix are $1$. We notice that $h^{-1}(z)=\Psi^{-1}_{\varphi^{-1} (z)} \circ \varphi^{-1} (z)=0$, and 
+	$d_0 \Psi_p = I_D + d_0 N_p= I_D$ is inclusion map. Thus
+	\begin{align*}
+		f(\varphi^{-1}(z)) \frac{J_{\Psi_p}(h^{-1}(z))}{J_{\varphi \circ \Psi_p}(h^{-1}(z))}=f(p)/\sqrt{\det \left(\pi_{T_p M} \circ d\varphi_p^T \circ d\varphi_p |_{T_pM}\right)}
+	\end{align*}
+	where $p=\varphi^{-1}(z)$.
+\end{proof}
+
+
+\subsection{Heat Kernel Estimate}
+\begin{theorem}[Upper Bound for The Heat Kernel] \cite[Cor. 3.1]{yauupbound} 
+	\label{thm:upper_app}
+	Let $M$ be a complete manifold without boundary. If the Ricci curvature of M is bounded from below by $-\kappa$ for some constant $\kappa\geq 0$, then for any $1<\alpha_1<2$ and $0<\alpha_2<1$, the heat kernel satisfies:
+	\begin{align}
+		K(t,p,q) \leq C(\alpha_2)^{\alpha_1} V^{-1/2}(B_p(\sqrt{t}))V^{-1/2}(B_q(\sqrt{t})) \exp \left(C(d)\alpha_2(\alpha_1-1)^{-1}\kappa t-\frac{d(p,q)^2}{(4+\alpha_2)t}\right),
+	\end{align}
+	where $B_x(r)$ is geodesic ball centered at $p$ with radius $r$, $C(\alpha_2)$ depends on $\alpha_2$ with $C(\alpha_2) \rightarrow \infty$ as $\alpha_2\rightarrow 0$.
+\end{theorem}
+
+
+
+
+
+
+\begin{lemma}[Estimate for Volume of Geodesic Ball] \cite[Prop. 14]{croke1980some}
+	\label{injvol}
+	Let $M$ be a complete manifold without boundary. then for $r \leq \iota_M /2$, we have 
+	\begin{align}
+		Vol(B_p(r)) \geq C^\prime(d) r^d,
+	\end{align}
+	where $C^\prime(d) = \frac{2^{d-1} \omega(d-1)^d}{d^d \omega (d)^{d-1}}$, and
+	$\omega(d)=\frac{2\pi^{\frac{d}{2}}}{\Gamma(\frac{d}{2})}$ is the volume of the unit $d$-dimensional sphere . Thus $C^\prime(d)= \frac{2^d \Gamma(\frac{d}{2})^{d-1}}{d^d \Gamma(\frac{d-1}{2})^d}$.
+\end{lemma}
+
+
+
+
+\begin{theorem}[Lower Bound for Heat Kernel]\cite[Thm. 3.1]{wang1997sharp}
+	\label{thm:lower_app}
+	Let M be a complete Riemannian manifold of dimension $d$ with Ricci curvature is greater than $-\kappa(d-1)$ for some $\kappa\geq 0$. For any $t, \sigma>0$ and $p,q\in M$, we have
+	\begin{align}
+		K(t,p,q) \geq (4\pi t)^{-d/2} \exp \left(-\left(\frac{1}{4t}+\frac{\sigma}{3\sqrt{2t}}\right)d(p,q)^2-\frac{\beta^2 }{4}t-(\frac{\beta^2}{4\sigma}+\frac{2d\sigma}{3})\sqrt{2t}\right),
+	\end{align}
+	where $\beta=\sqrt{\kappa}(d-1)$.
+\end{theorem}
+
+
+\iffalse
+\begin{lemma}
+	\label{app:global_case2}
+	If $d(p,q)\leq \frac{s_0}{1+\epsilon}$ where $s_0=2\sqrt{2}\tau_{l,\varphi(M)}$, $\varphi(p), \varphi(q)$ cannot satisfy global reach case.
+\end{lemma}
+\begin{proof}
+	If not, we assume there exists $p,q \in M$ such that $d(p,q)\leq s_0/1+\epsilon$ and $\varphi(p), \varphi(q)$ satisfy global reach case, i.e. $\frac{\varphi(p)+\varphi(q)}{2} \in Med(\varphi(M))$, $\pi(\frac{\varphi(p)+\varphi(q)}{2})=\varphi(p), \varphi(q)$ and $d_E(\varphi(p),\varphi(M))=d_E(\varphi(q),\varphi(M))=|\varphi(p)-\varphi(q)|/2$. Since $|\|d\varphi\|-1|<\epsilon$, we have $d(\varphi(p),\varphi(q))\leq s_0$, which implies $d(\varphi(p),\varphi(q))\leq \frac{3}{2}|\varphi(p)-\varphi(q)|$. 
+	
+	
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[scale=2]
+			
+			% 画圆
+			\draw[dashed] (0,0) circle(1cm);
+			
+			% 画直径
+			\draw[dashed] (-0.6,-0.8) -- (0.6,0.8);
+			
+			% 画穿过直径与圆交点的曲线
+			\draw plot[smooth, tension=0.7] coordinates {(-3,-1.5) (-1,-1.2) (-0.6,-0.8) (-0.6,0.2) (0.6,0.8) (1,1) (3,1.5)};
+			\node at (-0.6,-0.8) [left] {$\varphi(p)$};
+			\node at (0.6,0.8) [above] {$\varphi(q)$};
+			\node at (0,0) [below right] {$\frac{\varphi(p)+\varphi(q)}{2}$};
+			\node at (-0.15,0.5) [above left] {$\gamma(a)=\pi(\frac{\varphi(p)+\varphi(q)}{2})$};
+			\filldraw[red] (-0.6,-0.8) circle (1pt);
+			\filldraw[red] (0.6,0.8) circle (1pt);
+			\filldraw[red] (0,0) circle (1pt);
+			\filldraw[red] (-0.21,0.47) circle (1pt);
+			\draw[dashed] (0, 0) -- (-0.21,0.47);
+		\end{tikzpicture}
+		\caption{Local Estimate}
+	\end{figure}
+	
+	The inequality above implies the geodesic $\gamma(s)$ connecting $\varphi(p)$ and
+	$\varphi(q)$  must be partly inside the ball
+	$B(\frac{\varphi(p)+\varphi(q)}{2},\frac{|\varphi(p)-\varphi(q)|
+	}{2})$, since $\overline{\varphi(p)\varphi(q)}$ is the diameter of this ball and
+	\begin{align}
+		\|\gamma(s)\|=d(\varphi(p),\varphi(q)) \leq \frac{3}{2} \|\varphi(p)-\varphi(q)\| < \frac{\pi}{2}\|\varphi(p)-\varphi(q)\|,
+	\end{align}
+	which implies there exist $a \in (0,s)$ such that
+	\begin{align}
+		\|\gamma(a)-\frac{\varphi(p)+\varphi(q)}{2}\| < \frac{\|\varphi(p)-\varphi(q)\|}{2},
+	\end{align}
+	which contradicts with $\varphi(p),\varphi(q)$ satisfy global reach case.
+\end{proof}
+
+\fi
+
+
+%\input{dm-arxiv-uselesspart}
